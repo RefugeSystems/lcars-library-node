@@ -1,0 +1,31 @@
+{
+  "name": "lcars-library-node",
+  "version": "0.0.0",
+  "description": "NodeJS module for creating a library for the LCARS dashboard system",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RefugeSystems/lcars-library-node.git"
+  },
+  "keywords": [
+    "lcars",
+    "library",
+    "nodejs",
+    "node"
+  ],
+  "author": "aetherwalker@refugesystems.net",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RefugeSystems/lcars-library-node/issues"
+  },
+  "homepage": "https://github.com/RefugeSystems/lcars-library-node#readme",
+  "dependencies": {
+    "nodejs-websocket": "^1.7.1",
+    "socket.io": "^1.7.3",
+    "websocket": "^1.0.24",
+    "ws": "^2.2.2"
+  }
+}
