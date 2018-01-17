@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RefugeSystems/lcars-library-node#readme",
   "dependencies": {
+    "a-configuration": "^1.1.1",
     "hs100-api": "^0.5.0",
     "nodejs-websocket": "^1.7.1",
     "socket.io": "^1.7.3",
