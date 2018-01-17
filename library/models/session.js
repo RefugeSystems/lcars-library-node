@@ -6,8 +6,15 @@ var Schema = mongoose.Schema;
 /**
  * 
  * @class Session
+ * @constructor
  */
-configuration.session.connection.model("Session", new Schema({
+module.exports.schema = new Schema({
+	/**
+	 * 
+	 * @property id
+	 * @type String
+	 */
+	"id": String,
 	/**
 	 * 
 	 * @property username
@@ -75,4 +82,4 @@ configuration.session.connection.model("Session", new Schema({
 	 * @type String
 	 */
 	"user": String
-}));
+});

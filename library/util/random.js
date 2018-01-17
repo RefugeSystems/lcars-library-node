@@ -65,12 +65,3 @@ module.exports.string = function(len) {
 		return null;
 	}
 };
-
-/**
- * Return an identifier for Events.
- * @method eventID
- * @return {String} A string for identifying an event. 
- */
-module.exports.eventID = function() {
-	return module.exports.string(32);
-};
