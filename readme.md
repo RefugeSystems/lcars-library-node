@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/RefugeSystems/lcars-library-node.png)](https://travis-ci.org/RefugeSystems/lcars-library-node)
 [![Dependency Status](https://david-dm.org/RefugeSystems/lcars-library-node.svg)](https://david-dm.org/RefugeSystems/lcars-library-node)
-[![Project Tracking](https://marketing-assets.pivotaltracker.com/marketing_assets/about-us/primary_logo_mod-f7e6fa91609c72527b0f7b109055c92e71075e2748e43e95972a38123c43829e.jpg)](https://www.pivotaltracker.com/n/projects/2133682)
+[![Project Tracking](https://refugesystems.net/images/Tracker_Horizontal.svg)](https://www.pivotaltracker.com/n/projects/2133682)
 
 This project is a graph based storage system designed to offer information in a variety of ways to drive relational inqueries to data.
 
