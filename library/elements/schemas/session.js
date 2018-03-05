@@ -1,13 +1,7 @@
 
-var configuration = require("../conf/configuration.js");
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+var Schema = require("mongoose").Schema;
 
-/**
- * 
- * @class Session
- */
-configuration.session.connection.model("Session", new Schema({
+module.exports = new Schema({
 	/**
 	 * 
 	 * @property username
@@ -75,4 +69,4 @@ configuration.session.connection.model("Session", new Schema({
 	 * @type String
 	 */
 	"user": String
-}));
+});

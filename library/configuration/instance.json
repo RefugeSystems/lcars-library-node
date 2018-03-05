@@ -1,0 +1,35 @@
+{
+	"system": false,
+	"listening": {
+		"port": 8000
+	},
+	"identifier": {
+		"name": "Music Library"
+	},
+	"security": {
+		"authorizations": [{
+				"interface": "mongodb",
+				"collection": "session",
+				"translator": "translateMongoSession"
+			}, {
+				"interface": "google",
+				"translator": "translateGoogleSession"
+			}]
+	},
+	"logging": {
+		"storage": "mongodb",
+		"path": "mongodb://192.168.13.2/lcars",
+		"host": "192.168.13.2",
+		"user": "lcars",
+		"database": "lcars",
+		"password": false
+	},
+	"session": {
+		"storage": "mongodb",
+		"path": "mongodb://192.168.13.2/tower",
+		"host": "192.168.13.2",
+		"user": "lcars",
+		"database": "tower",
+		"password": false
+	}
+}

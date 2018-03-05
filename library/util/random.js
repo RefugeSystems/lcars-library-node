@@ -5,6 +5,7 @@
  * @constructor
  * @static
  */
+var configuration = require("a-configuration");
 
 /**
  * Quick reference array for generating random strings
@@ -69,8 +70,29 @@ module.exports.string = function(len) {
 /**
  * Return an identifier for Events.
  * @method eventID
+ * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
  * @return {String} A string for identifying an event. 
  */
-module.exports.eventID = function() {
-	return module.exports.string(32);
+module.exports.eventID = function(now) {
+	return "event:" + (now || Date.now()) + ":" + module.exports.string(19);
+};
+
+/**
+ * Return an identifier for Events.
+ * @method elementID
+ * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
+ * @return {String} A string for identifying an element. 
+ */
+module.exports.elementID = function(now) {
+	return "element:" + (now || Date.now()) + ":" + module.exports.string(19);
+};
+
+/**
+ * Return an identifier for Events.
+ * @method edgeID
+ * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
+ * @return {String} A string for identifying an edge. 
+ */
+module.exports.edgeID = function(now) {
+	return "edge:" + (now || Date.now()) + ":" + module.exports.string(19);
 };

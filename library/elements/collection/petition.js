@@ -1,7 +1,6 @@
 
-var configuration = require("../conf/configuration.js");
-var mongoose = require("mongoose");
-var schema = require("./schemas/petition.js");
+var configuration = require("a-configuration");
+var schema = require("../schemas/petition.js");
 var Model = configuration.logging.connection.model("petition", schema);
 
 /**
