@@ -24,12 +24,12 @@
   },
   "dependencies": {
     "a-configuration": "^1.1.1",
-    "mongoose": "^5.0.8",
     "bunyan": "^1.8.12",
+    "mongoose": "^5.0.8",
     "nodejs-websocket": "^1.7.1",
-    "socket.io": "^1.7.3",
+    "socket.io": "^1.7.4",
     "websocket": "^1.0.24",
-    "ws": "^2.2.2"
+    "ws": "^4.1.0"
   },
   "devDependencies": {
     "grunt": "^1.0.2",
