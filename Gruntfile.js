@@ -47,11 +47,11 @@ module.exports = function(grunt) {
 				},
 				"envs": ["nodejs", "jasmine"]
 			},
-			"target": ["library/**/*.js", "specifications/**/*.js", "scenerios/**/*.js"]
+			"target": ["library/**/*.js", "specifications/**/*.js", "scenarios/**/*.js"]
 		},
 		"watch": {
 			"build": {
-				"files": ["library/**/*.js", "specifications/**/*.js", "scenerios/**/*.js"],
+				"files": ["library/**/*.js", "specifications/**/*.js", "scenarios/**/*.js"],
 				"tasks": ["spec", "docs"]
 			}
 		},
@@ -80,8 +80,8 @@ module.exports = function(grunt) {
 				"helpers": ["./specifications/helpers/*.js"]
 			},
 			"scene": {
-				"specs": ["./scenerios/*.js"],
-				"helpers": ["./scenerios/helpers/*.js"]
+				"specs": ["./scenarios/*.js"],
+				"helpers": ["./scenarios/helpers/*.js"]
 			}
 		},
 		"yuidoc": {
