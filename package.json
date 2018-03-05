@@ -2,6 +2,9 @@
   "name": "lcars-library-node",
   "version": "0.0.0",
   "description": "NodeJS module for creating a library for the LCARS dashboard system",
+  "homepage": "https://github.com/RefugeSystems/lcars-library-node#readme",
+  "author": "aetherwalker@refugesystems.net",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
@@ -16,16 +19,13 @@
     "nodejs",
     "node"
   ],
-  "author": "aetherwalker@refugesystems.net",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/RefugeSystems/lcars-library-node/issues"
   },
-  "homepage": "https://github.com/RefugeSystems/lcars-library-node#readme",
   "dependencies": {
     "a-configuration": "^1.1.1",
-    "hs100-api": "^0.5.0",
     "mongoose": "^5.0.8",
+    "bunyan": "^1.8.12",
     "nodejs-websocket": "^1.7.1",
     "socket.io": "^1.7.3",
     "websocket": "^1.0.24",
@@ -39,5 +39,8 @@
     "gruntify-eslint": "^4.0.0",
     "load-grunt-tasks": "^3.5.2",
     "sandboxed-module": "^2.0.3"
+  },
+  "aconfiguration": {
+    "application": "library/configuration/"
   }
 }
