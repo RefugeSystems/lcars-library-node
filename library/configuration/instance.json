@@ -16,13 +16,14 @@
 				"translator": "translateGoogleSession"
 			}]
 	},
-	"logging": {
+	"mongoose": {
 		"storage": "mongodb",
-		"path": "mongodb://192.168.13.2/lcars",
-		"host": "192.168.13.2",
+		"-host": "192.168.13.2",
+		"host": "127.0.0.1",
 		"user": "lcars",
 		"database": "lcars",
-		"password": false
+		"password": false,
+		"noauth": true
 	},
 	"session": {
 		"storage": "mongodb",

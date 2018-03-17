@@ -1,13 +1,15 @@
 var bunyan = require("bunyan");
 
 module.exports.resolve = function(configuration) {
-	objects = {};
-	
 	return new Promise(function(done) {
 		var serializer = function(obj) {
 			return {"id": obj.id || obj._id};
 		};
 		
+		var pkg = require("../../package.json");
+		
+		configuration.bunyan = configuration.bunyan || {};
+		configuration.bunyan.name = configuration.bunyan.name || pkg.name || "NoNameFound";
 		configuration.bunyan.serializers = configuration.bunyan.serializers || {};
 		configuration.bunyan.serializers.modification = serializer;
 		configuration.bunyan.serializers.element = serializer;

@@ -25,7 +25,7 @@ var alphanumeric = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E",
  * 		between 0 and this value.
  * @return {Number} A number from within the specified range.
  */
-module.exports.float = function(range, min) {
+this.float = function(range, min) {
 	if(min) {
 		return Math.random() * range + min;
 	}
@@ -42,7 +42,7 @@ module.exports.float = function(range, min) {
  * 		between 0 and this value.
  * @return {Integer} A number from within the specified range.
  */
-module.exports.int = function(range, min) {
+this.int = function(range, min) {
 	if(min) {
 		return Math.floor(Math.random() * range) + min;
 	}
@@ -55,11 +55,11 @@ module.exports.int = function(range, min) {
  * @param {Number} len The length of the String to return.
  * @return {String} A string with the specified length.
  */
-module.exports.string = function(len) {
+this.string = function(len) {
 	if(len) {
-		var string = alphanumeric[random.int(alphanumeric.length)];
+		var string = alphanumeric[this.int(alphanumeric.length)];
 		while(string.length < len) {
-			string += alphanumeric[random.int(alphanumeric.length)];
+			string += alphanumeric[this.int(alphanumeric.length)];
 		}
 		return string;
 	} else {
@@ -73,8 +73,8 @@ module.exports.string = function(len) {
  * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
  * @return {String} A string for identifying an event. 
  */
-module.exports.eventID = function(now) {
-	return "event:" + (now || Date.now()) + ":" + module.exports.string(19);
+this.eventID = function(now) {
+	return "event:" + (now || Date.now()) + ":" + this.string(19);
 };
 
 /**
@@ -83,8 +83,8 @@ module.exports.eventID = function(now) {
  * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
  * @return {String} A string for identifying an element. 
  */
-module.exports.elementID = function(now) {
-	return "element:" + (now || Date.now()) + ":" + module.exports.string(19);
+this.elementID = function(now) {
+	return "element:" + (now || Date.now()) + ":" + this.string(19);
 };
 
 /**
@@ -93,6 +93,6 @@ module.exports.elementID = function(now) {
  * @param {Number} [now] Timestamp for marking the ID for uniqueness. Defaults to Date.now().
  * @return {String} A string for identifying an edge. 
  */
-module.exports.edgeID = function(now) {
-	return "edge:" + (now || Date.now()) + ":" + module.exports.string(19);
+this.edgeID = function(now) {
+	return "edge:" + (now || Date.now()) + ":" + this.string(19);
 };

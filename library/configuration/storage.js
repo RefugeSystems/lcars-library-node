@@ -12,6 +12,7 @@ module.exports = function(definition) {
 
 module.exports.resolve = function(configuration) {
 	return new Promise(function(done, fail) {
-		configuration.storage = new Storage(configuration.storage);
+		var storage = new module.exports(configuration.storage);
+		done({"storage": storage});
 	});
 };

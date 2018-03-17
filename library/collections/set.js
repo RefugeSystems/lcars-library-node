@@ -3,9 +3,9 @@ var EventEmitter = require("EventEmitter");
 
 var Random = require("../util/random");
 
-var Element = require("./element");
+var Element = require("../elements/element");
 
-var Link = require("./link");
+var Link = require("../elements/edge");
 
 /**
  * Class for maintaining a set of elements and links to be made available to connected terminals.
@@ -31,52 +31,52 @@ module.exports = function(description, options) {
 	this.id = setID();
 	
 	
-	this.createElement = function(description) {
+	this.createElement = function(session, description) {
 		
 	};
 	
 	
-	this.createLink = function(to, from, description) {
+	this.createLink = function(session, to, from, description) {
 		
 	};
 	
 	
-	this.deactivateElement = function(id) {
+	this.deactivateElement = function(session, id) {
 		
 	};
 	
 	
-	this.deactivateLink = function(id) {
+	this.deactivateLink = function(session, id) {
 		
 	};
 	
 	
-	this.deleteElement = function(id) {
+	this.deleteElement = function(session, id) {
 		
 	};
 	
 	
-	this.deleteLink = function(id) {
+	this.deleteLink = function(session, id) {
 		
 	};
 	
 	
-	this.addElement = function(id) {
+	this.addElement = function(session, id) {
 		
 	};
 	
 	
-	this.addLink = function(id) {
+	this.addLink = function(session, id) {
 		
 	};
 	
 	
-	this.pruneElement = function(id) {
+	this.pruneElement = function(session, id) {
 		
 	};
 	
 	
-	this.pruneLink = function(id) {
+	this.pruneLink = function(session, id) {
 		
 	};
 	
@@ -96,6 +96,8 @@ module.exports = function(description, options) {
 	 * @param {Object} data
 	 */
 	this.emit = function(key, data) {
+		var id, error;
+		
 		if(key) {
 			if(key[0] !== "e" || key[1] !== "x" || key[2] !== "-") {
 				key = "ex-" + key;
@@ -103,14 +105,25 @@ module.exports = function(description, options) {
 		} else {
 			key = "ext-generic";
 		}
-		var id = eventID();
+		
+		id = eventID();
 		data = data || {};
 		data.key = key;
 		data.id = id
 		data.emitted = Date.now();
 		if(data.id !== id) {
-			throw {"message": "Unable to set identifier for Event", "event": {"id": id, "data": data, "key": key}});
+			error = {
+				"message": "Unable to set identifier for Event",
+				"event": {
+					"id": id,
+					"data": data,
+					"key": key
+				}
+			};
+			
+			throw error;
 		}
+		
 		emitter.emit(key, data);
 	};
 };

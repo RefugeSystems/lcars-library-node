@@ -1,6 +1,7 @@
 var configuration = require("a-configuration");
 var Schema = require("mongoose").Schema;
 var random = require("../util/random");
+var Model;
 
 /**
  * 
@@ -12,6 +13,10 @@ var random = require("../util/random");
  * @param {Object} description
  */
 module.exports = function(session, origin, description) {
+	if(!Model) {
+		throw new Error("Model not ready");
+	}
+
 	var model = new Model(description);
 	model.id = random.eventID();
 	model.occurred = Date.now();
@@ -21,14 +26,14 @@ module.exports = function(session, origin, description) {
 };
 
 var Model = configuration.connection.model("modification", new Schema({
-	
+
 	"occurred": Number,
-	
+
 	"session": String,
-	
+
 	"type": String,
-	
+
 	"previous": String,
-	
+
 	"resultant": String
 }));
