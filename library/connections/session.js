@@ -1,51 +1,85 @@
-
-var configuration = require("../conf/configuration.js");
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+var configuration = require("a-configuration");
+var Schema = require("mongoose").Schema;
+var random = require("../util/random");
 
 /**
- * 
+ * Representation of message access request to retrieve information
+ * from the library and process any needed session information.
  * @class Session
+ * @module Connections
  * @constructor
+ * @param {Object} description
+ * @param {WebSocket | Socket | Request} description
  */
-module.exports = function(id, profile) {
+module.exports = function(description, socket) {
+	var model = new Model(description);
+	model.id = random.sessionID();
+	model.authenticated = Date.now();
+	model.last = model.authenticated;
+	if(socket) {
+		model.ips = model.ips || [];
+		var ip = socket.ip || socket.srcip || socket.src_ip || socket.sourceIP || socket.source_ip || socket.sip;
+		if(ip && model.ips.indexOf(ip) === -1 && model.srcip !== ip) {
+			model.ips.push(ip);
+		}
+	}
+	return model;
+};
+
+var Model = this.model = configuration.connection.model("session", new Schema({
 	/**
 	 * 
 	 * @property id
 	 * @type String
 	 */
-	this.id = id;
+	"id": String,
 	
 	/**
 	 * 
 	 * @property username
 	 * @type String
 	 */
-	this.username = profile.username;
+	"username": String,
 	
 	/**
-	 * Tracks IP addresses seen for this session
+	 * Due to the way passport processes requests, the source
+	 * IP isn't available at sign-in. Additionally, this field
+	 * is being moved to an array to track possible multitudes
+	 * of IP addresses.
+	 * @property srcip
+	 * @type String
+	 * @deprecated
+	 */
+	"srcip": String,
+	
+	/**
+	 * Tracks IP addresses seen inside this session
 	 * @property ips
 	 * @type String
 	 */
-	this.ips = [];
-	if(profile.sourceIP) {
-		this.ips.push(profile.sourceIP);
-	}
+	"ips": [String],
 	
 	/**
-	 * The passport request string that generated this request.
+	 * The passport request string that generated
+	 * this request.
 	 * @property source
 	 * @type String
 	 */
-	this.source = profile.sourcePassport;
+	"source": String,
 	
 	/**
 	 * When this session was established.
 	 * @property authenticated
 	 * @type Number
 	 */
-	this.authenticated = Date.now();
+	"authenticated": Number,
+	
+	/**
+	 * The String representing the code for this session.
+	 * @property authenticator
+	 * @type String
+	 */
+	"authenticator": String,
 	
 	/**
 	 * String used for looking up this session that should be deleted
@@ -53,19 +87,27 @@ module.exports = function(id, profile) {
 	 * @property connector
 	 * @type String
 	 */
-	this.connector = profile.connector;
+	"connector": String,
+	
+	/**
+	 * When set, this names the Tower instance to which the user has an
+	 * active websocket.
+	 * @property connected
+	 * @type String
+	 */
+	"connected": String,
 	
 	/**
 	 * The last time this session was used.
 	 * @property last
 	 * @type Number
 	 */
-	this.last = Date.now();
-
+	"last": Number,
+	
 	/**
 	 * The Refuge user id
 	 * @property user
 	 * @type String
 	 */
-	this.user = profile.id;
-};
+	"user": String
+}));

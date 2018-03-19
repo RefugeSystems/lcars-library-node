@@ -1,0 +1,7 @@
+{
+	"server": {
+		"key": "/opt/ssl-tower.key",
+		"crt": "/opt/ssl-tower.crt",
+		"port": "3000"
+	}
+}

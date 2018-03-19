@@ -12,26 +12,24 @@ var Model;
  * @param {String} origin ID of the element from which the event occurred. 
  * @param {Object} description
  */
-module.exports = function(session, origin, description) {
+module.exports = function(session, previous, resultant) {
 	if(!Model) {
 		throw new Error("Model not ready");
 	}
 
-	var model = new Model(description);
-	model.id = random.eventID();
+	var model = new Model();
 	model.occurred = Date.now();
 	model.session = session.id;
-	model.origin = origin;
+	model.previous = previous;
+	model.resultant = resultant;
 	return model;
 };
 
-var Model = configuration.connection.model("modification", new Schema({
+var Model = module.exports.model = configuration.connection.model("modification", new Schema({
 
 	"occurred": Number,
 
 	"session": String,
-
-	"type": String,
 
 	"previous": String,
 

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>library\elements\element.js - lcars-library-node</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="lcars-library-node" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Circulation.html">Circulation</a></li>
+                                <li><a href="../classes/Distress.html">Distress</a></li>
+                                <li><a href="../classes/Edge.html">Edge</a></li>
+                                <li><a href="../classes/Element.html">Element</a></li>
+                                <li><a href="../classes/Event.html">Event</a></li>
+                                <li><a href="../classes/Exception.html">Exception</a></li>
+                                <li><a href="../classes/External.html">External</a></li>
+                                <li><a href="../classes/LCARSLibrary.html">LCARSLibrary</a></li>
+                                <li><a href="../classes/LCARSServer.html">LCARSServer</a></li>
+                                <li><a href="../classes/Modification.html">Modification</a></li>
+                                <li><a href="../classes/Random.html">Random</a></li>
+                                <li><a href="../classes/Search.html">Search</a></li>
+                                <li><a href="../classes/Session.html">Session</a></li>
+                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
+                                <li><a href="../classes/Set.html">Set</a></li>
+                                <li><a href="../classes/Storage.html">Storage</a></li>
+                                <li><a href="../classes/Terminal.html">Terminal</a></li>
+                                <li><a href="../classes/User.html">User</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Connections.html">Connections</a></li>
+                                <li><a href="../modules/Elements.html">Elements</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: library\elements\element.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+var configuration = require(&quot;a-configuration&quot;);
+var Schema = require(&quot;mongoose&quot;).Schema;
+var random = require(&quot;../util/random&quot;);
+
+/**
+ * 
+ * @class Distress
+ * @module Elements
+ * @constructor
+ */
+var Distress = new Schema({
+	/**
+	 * Above this status, this element is considered okay. Below this
+	 * value, but above {{#crossLink &quot;Distress/exception:property}}{{/crossLink}}
+	 * the element is considered to be in distress.
+	 * 
+	 * Typically this should be viewed as a &quot;percent supported&quot;, but this scheme
+	 * can be adjusted by setting link contributions to perform differently.
+	 * @property functional
+	 * @type Number
+	 * @default 70
+	 */
+	&quot;functional&quot;: Number,
+	/**
+	 * Above this number and below {{#crossLink &quot;Distress/functional:property}}{{/crossLink}}
+	 * the element is considered to be in distress. Below this value, the element is
+	 * considered to have encountered an exception.
+	 * 
+	 * Typically this should be viewed as a &quot;percent supported&quot;, but this scheme
+	 * can be adjusted by setting link contributions to perform differently.
+	 * @property exception
+	 * @type Number
+	 * @default 30
+	 */
+	&quot;exception&quot;: Number
+});
+
+/**
+ * 
+ * @class Element
+ * @module Elements
+ * @constructor
+ * @param {Object} session
+ * @param {Object} description
+ */
+module.exports = function(session, description) {
+	var model = new Model(description);
+	model.id = random.elementID();
+	model.creater = session.id;
+	model.created = Date.now();
+	model.modifier = session.id;
+	model.modified = model.created;
+	if(!model.distress || !model.distress.functional) {
+		model.distress = {};
+		model.distress.functional = 70;
+		model.distress.exception = 30; 
+	}
+	return model;
+};
+
+var Model = module.exports.model = configuration.connection.model(&quot;element&quot;, new Schema({
+	/**
+	 * 
+	 * @property id
+	 * @type String
+	 */
+	&quot;id&quot;: String,
+	
+	/**
+	 * 
+	 * @property name
+	 * @type String
+	 */
+	&quot;name&quot;: String,
+	
+	/**
+	 * Markdown style string describing the element.
+	 * @property description
+	 * @type String
+	 */
+	&quot;description&quot;: String,
+	
+	/**
+	 * 
+	 * @property type
+	 * @type String
+	 */
+	&quot;type&quot;: String,
+	
+	/**
+	 * 
+	 * @property subtype
+	 * @type String
+	 */
+	&quot;subtype&quot;: String,
+	
+	/**
+	 * Indicates if the element should be considered active.
+	 * 
+	 * This does _NOT_ affect it&#x27;s availability for querying or graph linking,
+	 * this is simply an extension of the status.
+	 * 
+	 * An example would be taking a server offline for maintenance.
+	 * 
+	 * See {{#crossLink Element/removed:property}}{{/crossLink}} for making an
+	 * element unavailable to searches and linking. 
+	 * @property active
+	 * @type Boolean
+	 */
+	&quot;active&quot;: Boolean,
+	
+	/**
+	 * When true, this element is no longer used when calculating support/dependency
+	 * trees or event propagation, but it will still appear in searches and show in
+	 * exploratory graphs and searches.
+	 * @property removed
+	 * @type Boolean
+	 */
+	&quot;removed&quot;: Boolean,
+	
+	/**
+	 * 
+	 * @property distress
+	 * @type Distress
+	 */
+	&quot;distress&quot;: Distress,
+	
+	/**
+	 * 
+	 * @property fields
+	 * @type Object
+	 */
+	&quot;fields&quot;: Object,
+	
+	/**
+	 * 
+	 * @property creater
+	 * @type String
+	 */
+	&quot;creater&quot;: String,
+	
+	/**
+	 * 
+	 * @property created
+	 * @type Number
+	 */
+	&quot;created&quot;: Number,
+	
+	/**
+	 * 
+	 * @property modifier
+	 * @type String
+	 */
+	&quot;modifier&quot;: String,
+	
+	/**
+	 * 
+	 * @property modified
+	 * @type Number
+	 */
+	&quot;modified&quot;: Number
+}));
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

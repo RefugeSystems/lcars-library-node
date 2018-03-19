@@ -25,11 +25,15 @@
   "dependencies": {
     "a-configuration": "^1.1.1",
     "bunyan": "^1.8.12",
+    "content-security-policy-builder": "^2.0.0",
+    "express": "^4.16.3",
     "mongoose": "^5.0.8",
     "nodejs-websocket": "^1.7.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
     "socket.io": "^1.7.4",
     "websocket": "^1.0.24",
-    "ws": "^4.1.0"
+    "ws": "^5.0.0"
   },
   "devDependencies": {
     "grunt": "^1.0.2",

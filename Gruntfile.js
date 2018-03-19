@@ -15,11 +15,13 @@ module.exports = function(grunt) {
 				},
 				"globals": [
 					"requireSubject",
+					"EventEmitter",
 					"random",
 					"module",
 					"require",
 					"console",
-					"Promise"
+					"Promise",
+					"global"
 				],
 				/* http://eslint.org/docs/rules/ */
 				"rules": {
@@ -91,7 +93,7 @@ module.exports = function(grunt) {
 				"version": "<%= pkg.version %>",
 				"url": "<%= pkg.homepage %>",
 				"options": {
-					"paths": "./app",
+					"paths": "./library",
 					"outdir": "./docs"
 				}
 			}

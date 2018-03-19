@@ -12,11 +12,13 @@ var random = require("../util/random");
  * @param {String} target
  * @param {Object} description
  */
-module.exports = function(session, source, target, description) {
+module.exports = function(session, description) {
+	if(!description.source || !description.target) {
+		throw new Error("Links require source, and target");
+	}
+	
 	var model = new Model(description);
 	model.id = random.edgeID();
-	model.source = source;
-	model.target = target;
 	model.creater = session.id;
 	model.created = Date.now();
 	model.modifier = session.id;
@@ -24,7 +26,7 @@ module.exports = function(session, source, target, description) {
 	return model;
 };
 
-var Model = configuration.connection.model("edge", new Schema({
+var Model = module.exports.model = configuration.connection.model("edge", new Schema({
 	/**
 	 * 
 	 * @property id
@@ -38,6 +40,36 @@ var Model = configuration.connection.model("edge", new Schema({
 	 * @type String
 	 */
 	"name": String,
+	
+	/**
+	 * Links exist in distinct sets that may or may not be part of the master set.
+	 * This allows resources to be expressed in different manners and for those manners to inherit
+	 * a set or not.
+	 * 
+	 * 
+	 * @property set
+	 * @type String
+	 */
+	"set": String,
+	
+	/**
+	 * When true, this link is considered limited to the set and not the master list.
+	 * @property private
+	 * @type Boolean 
+	 */
+	"private": Boolean,
+	
+	/**
+	 * When determining if an element is "in distress" or not, the contribution of all supporting
+	 * elements is considered during an update.
+	 * 
+	 * This must result in a number to be considered valid and is passed the status of the "source"
+	 * and "target" as 0: Functional, 1: Warning, 2: Exception, or 3: Deactivated .
+	 * @property contribution
+	 * @type String
+	 * @optional
+	 */
+	"contribution": String,
 	
 	/**
 	 * Markdown style string describing the element.
@@ -59,6 +91,15 @@ var Model = configuration.connection.model("edge", new Schema({
 	 * @type String
 	 */
 	"subtype": String,
+	
+	/**
+	 * When true, this edge is no longer used when calculating support/dependency
+	 * trees or event propagation, but it will still appear in searches and show in
+	 * exploratory graphs and searches.
+	 * @property removed
+	 * @type Boolean
+	 */
+	"removed": Boolean,
 
 	/**
 	 * 

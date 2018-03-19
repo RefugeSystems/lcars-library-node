@@ -1,0 +1,2059 @@
+{
+    "project": {
+        "name": "lcars-library-node",
+        "description": "NodeJS module for creating a library for the LCARS dashboard system",
+        "version": "0.0.0",
+        "url": "https://github.com/RefugeSystems/lcars-library-node#readme"
+    },
+    "files": {
+        "library\\configuration\\storage.js": {
+            "name": "library\\configuration\\storage.js",
+            "modules": {},
+            "classes": {
+                "Storage": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\exception.js": {
+            "name": "library\\connections\\exception.js",
+            "modules": {
+                "Connections": 1
+            },
+            "classes": {
+                "Exception": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\external.js": {
+            "name": "library\\connections\\external.js",
+            "modules": {},
+            "classes": {
+                "External": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\session.js": {
+            "name": "library\\connections\\session.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\terminal.js": {
+            "name": "library\\connections\\terminal.js",
+            "modules": {},
+            "classes": {
+                "Terminal": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\user.js": {
+            "name": "library\\connections\\user.js",
+            "modules": {},
+            "classes": {
+                "User": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\edge.js": {
+            "name": "library\\elements\\edge.js",
+            "modules": {},
+            "classes": {
+                "Edge": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\element.js": {
+            "name": "library\\elements\\element.js",
+            "modules": {},
+            "classes": {
+                "Distress": 1,
+                "Element": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\event.js": {
+            "name": "library\\elements\\event.js",
+            "modules": {},
+            "classes": {
+                "Event": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\index.js": {
+            "name": "library\\elements\\index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\modification.js": {
+            "name": "library\\elements\\modification.js",
+            "modules": {
+                "Elements": 1
+            },
+            "classes": {
+                "Modification": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\elements\\set.js": {
+            "name": "library\\elements\\set.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\models\\session.js": {
+            "name": "library\\models\\session.js",
+            "modules": {},
+            "classes": {
+                "Session": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\models\\sessionMarker.js": {
+            "name": "library\\models\\sessionMarker.js",
+            "modules": {},
+            "classes": {
+                "SessionMarker": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\space\\circulation.js": {
+            "name": "library\\space\\circulation.js",
+            "modules": {},
+            "classes": {
+                "Circulation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\space\\search.js": {
+            "name": "library\\space\\search.js",
+            "modules": {},
+            "classes": {
+                "Search": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\space\\set.js": {
+            "name": "library\\space\\set.js",
+            "modules": {},
+            "classes": {
+                "Set": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\util\\random.js": {
+            "name": "library\\util\\random.js",
+            "modules": {},
+            "classes": {
+                "Random": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\library.js": {
+            "name": "library\\library.js",
+            "modules": {},
+            "classes": {
+                "LCARSLibrary": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\server.js": {
+            "name": "library\\server.js",
+            "modules": {},
+            "classes": {
+                "LCARSServer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "Connections": {
+            "name": "Connections",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Storage": 1,
+                "Exception": 1,
+                "External": 1,
+                "Terminal": 1,
+                "User": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "library\\connections\\user.js",
+            "line": 5
+        },
+        "Elements": {
+            "name": "Elements",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Session": 1,
+                "Edge": 1,
+                "Distress": 1,
+                "Element": 1,
+                "Event": 1,
+                "Modification": 1,
+                "Set": 1,
+                "SessionMarker": 1,
+                "Circulation": 1,
+                "Search": 1,
+                "Random": 1,
+                "LCARSLibrary": 1,
+                "LCARSServer": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "library\\server.js",
+            "line": 3,
+            "itemtype": "main"
+        }
+    },
+    "classes": {
+        "Storage": {
+            "name": "Storage",
+            "shortname": "Storage",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "file": "library\\configuration\\storage.js",
+            "line": 3,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "definition",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Exception": {
+            "name": "Exception",
+            "shortname": "Exception",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "file": "library\\connections\\exception.js",
+            "line": 5,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "origin",
+                    "description": "ID of the element from which the event occurred.",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "External": {
+            "name": "External",
+            "shortname": "External",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "namespace": "",
+            "file": "library\\connections\\external.js",
+            "line": 2,
+            "description": "A connection to another LCARS Library for additional elements and links.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "commonName",
+                    "description": "Used in defining URLs in a reusable format between libraries.",
+                    "type": "String"
+                },
+                {
+                    "name": "address",
+                    "description": "The literal address, generally either an IP or a Fully Qualified Domain Name (FQDN).",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "socket",
+                    "description": "",
+                    "type": "Socket"
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Session": {
+            "name": "Session",
+            "shortname": "Session",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\models\\session.js",
+            "line": 6,
+            "description": "Representation of message access request to retrieve information\nfrom the library and process any needed session information.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "WebSocket | Socket | Request"
+                }
+            ]
+        },
+        "Terminal": {
+            "name": "Terminal",
+            "shortname": "Terminal",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "namespace": "",
+            "file": "library\\connections\\terminal.js",
+            "line": 2,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Session"
+                },
+                {
+                    "name": "user",
+                    "description": "",
+                    "type": "User"
+                },
+                {
+                    "name": "socket",
+                    "description": "",
+                    "type": "WebSocket"
+                }
+            ]
+        },
+        "User": {
+            "name": "User",
+            "shortname": "User",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "namespace": "",
+            "file": "library\\connections\\user.js",
+            "line": 5,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "details",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Edge": {
+            "name": "Edge",
+            "shortname": "Edge",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\elements\\edge.js",
+            "line": 5,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "source",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "target",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Distress": {
+            "name": "Distress",
+            "shortname": "Distress",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\elements\\element.js",
+            "line": 5,
+            "is_constructor": 1
+        },
+        "Element": {
+            "name": "Element",
+            "shortname": "Element",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\elements\\element.js",
+            "line": 38,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Event": {
+            "name": "Event",
+            "shortname": "Event",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\elements\\event.js",
+            "line": 5,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "origin",
+                    "description": "ID of the element from which the event occurred.",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Modification": {
+            "name": "Modification",
+            "shortname": "Modification",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\elements\\modification.js",
+            "line": 6,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "origin",
+                    "description": "ID of the element from which the event occurred.",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Set": {
+            "name": "Set",
+            "shortname": "Set",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\space\\set.js",
+            "line": 8,
+            "description": "Represents the set of links that connect elements. Various collections serve different\npurposes for how they connect and can inherit from one another.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "SessionMarker": {
+            "name": "SessionMarker",
+            "shortname": "SessionMarker",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\models\\sessionMarker.js",
+            "line": 6,
+            "is_constructor": 1
+        },
+        "Circulation": {
+            "name": "Circulation",
+            "shortname": "Circulation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\space\\circulation.js",
+            "line": 5,
+            "description": "Pushes an event around between elements and checks their status.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                },
+                {
+                    "name": "collections",
+                    "description": "",
+                    "type": "Array"
+                }
+            ]
+        },
+        "Search": {
+            "name": "Search",
+            "shortname": "Search",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\space\\search.js",
+            "line": 2,
+            "is_constructor": 1,
+            "static": 1
+        },
+        "Random": {
+            "name": "Random",
+            "shortname": "Random",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\util\\random.js",
+            "line": 2,
+            "description": "Provides static references to randomization functions.",
+            "is_constructor": 1,
+            "static": 1
+        },
+        "LCARSLibrary": {
+            "name": "LCARSLibrary",
+            "shortname": "LCARSLibrary",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\library.js",
+            "line": 2,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "configuration",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "LCARSServer": {
+            "name": "LCARSServer",
+            "shortname": "LCARSServer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Elements",
+            "namespace": "",
+            "file": "library\\server.js",
+            "line": 3,
+            "description": "General Library Access/Retrieval Server for the LCARS Library\n\nThe library serves as an endpoint for specific collections as designated by the\nconfiguration. A websocket is used to synchronize collections being provided to\nvarious registrations, allowing for multiple displays to synchronize displayed\ndata.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "handler",
+                    "description": "",
+                    "type": "Handler"
+                }
+            ]
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 23,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 30,
+            "description": "Serves as a general descriptor for the exception.",
+            "itemtype": "property",
+            "name": "code",
+            "type": "String",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 37,
+            "itemtype": "property",
+            "name": "session",
+            "type": "String",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 44,
+            "itemtype": "property",
+            "name": "request",
+            "type": "String",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 51,
+            "itemtype": "property",
+            "name": "error",
+            "type": "Object",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 58,
+            "itemtype": "property",
+            "name": "message",
+            "type": "String",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\exception.js",
+            "line": 65,
+            "description": "When the exception occurred.",
+            "itemtype": "property",
+            "name": "occurred",
+            "type": "Number",
+            "class": "Exception",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 30,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 37,
+            "itemtype": "property",
+            "name": "username",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 44,
+            "description": "Due to the way passport processes requests, the source\nIP isn't available at sign-in. Additionally, this field\nis being moved to an array to track possible multitudes\nof IP addresses.",
+            "itemtype": "property",
+            "name": "srcip",
+            "type": "String",
+            "deprecated": true,
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 55,
+            "description": "Tracks IP addresses seen inside this session",
+            "itemtype": "property",
+            "name": "ips",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 62,
+            "description": "The passport request string that generated\nthis request.",
+            "itemtype": "property",
+            "name": "source",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 70,
+            "description": "When this session was established.",
+            "itemtype": "property",
+            "name": "authenticated",
+            "type": "Number",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 77,
+            "description": "The String representing the code for this session.",
+            "itemtype": "property",
+            "name": "authenticator",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 84,
+            "description": "String used for looking up this session that should be deleted\nafter fetch.",
+            "itemtype": "property",
+            "name": "connector",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 92,
+            "description": "When set, this names the Tower instance to which the user has an\nactive websocket.",
+            "itemtype": "property",
+            "name": "connected",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 100,
+            "description": "The last time this session was used.",
+            "itemtype": "property",
+            "name": "last",
+            "type": "Number",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\session.js",
+            "line": 107,
+            "description": "The Refuge user id",
+            "itemtype": "property",
+            "name": "user",
+            "type": "String",
+            "class": "Session",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 19,
+            "itemtype": "property",
+            "name": "username",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 25,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 31,
+            "description": "Field values for arbitrary data.",
+            "itemtype": "property",
+            "name": "data",
+            "type": "Object",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 53,
+            "description": "Return an identifier for a User.",
+            "itemtype": "method",
+            "name": "userID",
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "A string for identifying an event.",
+                "type": "String"
+            },
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 28,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 35,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 42,
+            "description": "Links exist in distinct sets that may or may not be part of the master set.\nThis allows resources to be expressed in different manners and for those manners to inherit\na set or not.",
+            "itemtype": "property",
+            "name": "set",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 53,
+            "description": "When determining if an element is \"in distress\" or not, the contribution of all supporting\nelements is considered during an update.\n\nThis must result in a number to be considered valid and is passed the status of the \"source\"\nand \"target\" as 0: Functional, 1: Warning, 2: Exception, or 3: Deactivated .",
+            "itemtype": "property",
+            "name": "contribution",
+            "type": "String",
+            "optional": 1,
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 65,
+            "description": "Markdown style string describing the element.",
+            "itemtype": "property",
+            "name": "description",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 72,
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 79,
+            "itemtype": "property",
+            "name": "subtype",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 86,
+            "description": "When true, this edge is no longer used when calculating support/dependency\ntrees or event propagation, but it will still appear in searches and show in\nexploratory graphs and searches.",
+            "itemtype": "property",
+            "name": "removed",
+            "type": "Boolean",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 95,
+            "itemtype": "property",
+            "name": "source",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 102,
+            "itemtype": "property",
+            "name": "target",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 109,
+            "itemtype": "property",
+            "name": "fields",
+            "type": "Object",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 116,
+            "itemtype": "property",
+            "name": "creater",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 123,
+            "itemtype": "property",
+            "name": "created",
+            "type": "Number",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 130,
+            "itemtype": "property",
+            "name": "modifier",
+            "type": "String",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 137,
+            "itemtype": "property",
+            "name": "modified",
+            "type": "Number",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 12,
+            "description": "Above this status, this element is considered okay. Below this\nvalue, but above {{#crossLink \"Distress/exception:property}}{{/crossLink}}\nthe element is considered to be in distress.\n\nTypically this should be viewed as a \"percent supported\", but this scheme\ncan be adjusted by setting link contributions to perform differently.",
+            "itemtype": "property",
+            "name": "functional",
+            "type": "Number",
+            "default": "70",
+            "class": "Distress",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 24,
+            "description": "Above this number and below {{#crossLink \"Distress/functional:property}}{{/crossLink}}\nthe element is considered to be in distress. Below this value, the element is\nconsidered to have encountered an exception.\n\nTypically this should be viewed as a \"percent supported\", but this scheme\ncan be adjusted by setting link contributions to perform differently.",
+            "itemtype": "property",
+            "name": "exception",
+            "type": "Number",
+            "default": "30",
+            "class": "Distress",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 62,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 69,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 76,
+            "description": "Markdown style string describing the element.",
+            "itemtype": "property",
+            "name": "description",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 83,
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 90,
+            "itemtype": "property",
+            "name": "subtype",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 97,
+            "description": "Indicates if the element should be considered active.\n\nThis does _NOT_ affect it's availability for querying or graph linking,\nthis is simply an extension of the status.\n\nAn example would be taking a server offline for maintenance.\n\nSee {{#crossLink Element/removed:property}}{{/crossLink}} for making an\nelement unavailable to searches and linking.",
+            "itemtype": "property",
+            "name": "active",
+            "type": "Boolean",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 112,
+            "description": "When true, this element is no longer used when calculating support/dependency\ntrees or event propagation, but it will still appear in searches and show in\nexploratory graphs and searches.",
+            "itemtype": "property",
+            "name": "removed",
+            "type": "Boolean",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 121,
+            "itemtype": "property",
+            "name": "distress",
+            "type": "Distress",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 128,
+            "itemtype": "property",
+            "name": "fields",
+            "type": "Object",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 135,
+            "itemtype": "property",
+            "name": "creater",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 142,
+            "itemtype": "property",
+            "name": "created",
+            "type": "Number",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 149,
+            "itemtype": "property",
+            "name": "modifier",
+            "type": "String",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 156,
+            "itemtype": "property",
+            "name": "modified",
+            "type": "Number",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 31,
+            "itemtype": "property",
+            "name": "label",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 38,
+            "description": "Markdown style string describing the event.",
+            "itemtype": "property",
+            "name": "description",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 45,
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 52,
+            "itemtype": "property",
+            "name": "subtype",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 59,
+            "description": "Array of Element IDs that this event has touched.",
+            "itemtype": "property",
+            "name": "touched",
+            "type": "Array | String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 66,
+            "itemtype": "property",
+            "name": "occurred",
+            "type": "Number",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 73,
+            "description": "The session, if any, from which this event originated.\n\nOnly defined for user initiated events. Undefined indicates a system event.",
+            "itemtype": "property",
+            "name": "session",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\event.js",
+            "line": 82,
+            "description": "Indicated the ID of the element from which this event is considered to have\noriginated.",
+            "itemtype": "property",
+            "name": "origin",
+            "type": "String",
+            "class": "Event",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 27,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 34,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 41,
+            "description": "Markdown style string describing the purpose of the set.",
+            "itemtype": "property",
+            "name": "description",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 48,
+            "description": "Custom fields to use to tag the set for informational purposes.",
+            "itemtype": "property",
+            "name": "fields",
+            "type": "Object",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 55,
+            "description": "Array of set IDs that should be considered a subgroup of this set.",
+            "itemtype": "property",
+            "name": "touched",
+            "type": "Array | String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 62,
+            "itemtype": "property",
+            "name": "creater",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 69,
+            "itemtype": "property",
+            "name": "created",
+            "type": "Number",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 76,
+            "itemtype": "property",
+            "name": "modifier",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\set.js",
+            "line": 83,
+            "itemtype": "property",
+            "name": "modified",
+            "type": "Number",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 12,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 18,
+            "itemtype": "property",
+            "name": "username",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 24,
+            "description": "Due to the way passport processes requests, the source\nIP isn't available at signin. Additionally, this field\nis being moved to an array to track possible multitudes\nof IP addresses.",
+            "itemtype": "property",
+            "name": "srcip",
+            "type": "String",
+            "deprecated": true,
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 34,
+            "description": "Tracks IP addresses seen inside this session",
+            "itemtype": "property",
+            "name": "ips",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 40,
+            "description": "The passport request string that generated\nthis request.",
+            "itemtype": "property",
+            "name": "source",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 47,
+            "description": "When this session was established.",
+            "itemtype": "property",
+            "name": "authenticated",
+            "type": "Number",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 53,
+            "description": "The String representing the code for this session.",
+            "itemtype": "property",
+            "name": "authenticator",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 59,
+            "description": "String used for looking up this session that should be deleted\nafter fetch.",
+            "itemtype": "property",
+            "name": "connector",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 66,
+            "description": "When set, this names the Tower instance to which the user has an\nactive websocket.",
+            "itemtype": "property",
+            "name": "connected",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 73,
+            "description": "The last time this session was used.",
+            "itemtype": "property",
+            "name": "last",
+            "type": "Number",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\session.js",
+            "line": 79,
+            "description": "The Refuge user id",
+            "itemtype": "property",
+            "name": "user",
+            "type": "String",
+            "class": "Session",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\sessionMarker.js",
+            "line": 12,
+            "itemtype": "property",
+            "name": "userID",
+            "type": "String",
+            "class": "SessionMarker",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\sessionMarker.js",
+            "line": 18,
+            "itemtype": "property",
+            "name": "sessionID",
+            "type": "String",
+            "class": "SessionMarker",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\models\\sessionMarker.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "time",
+            "type": "Number",
+            "class": "SessionMarker",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\circulation.js",
+            "line": 18,
+            "description": "Note: When calculating distress, contribution by links is not required and should default to\n 100 / {The Number of Support Links}, ie. That link's percent of the support.",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "collections",
+                    "description": "",
+                    "type": "Array"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "Circulation",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 9,
+            "itemtype": "method",
+            "name": "path",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "from",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 22,
+            "itemtype": "method",
+            "name": "supports",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 34,
+            "itemtype": "method",
+            "name": "supplies",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 46,
+            "itemtype": "method",
+            "name": "supportConvergence",
+            "params": [
+                {
+                    "name": "ids",
+                    "description": "",
+                    "type": "Array"
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 58,
+            "itemtype": "method",
+            "name": "supplyConvergence",
+            "params": [
+                {
+                    "name": "ids",
+                    "description": "",
+                    "type": "Array"
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\set.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\set.js",
+            "line": 61,
+            "itemtype": "method",
+            "name": "emit",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "Identifier for the event to emit, a key prefix of \"ext-\" indicating\n \t\texternal origin is required and added automatically if omitted.",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 10,
+            "description": "Quick reference array for generating random strings",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "alphanumeric",
+            "type": "Array",
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 18,
+            "description": "Return a floating point number.",
+            "itemtype": "method",
+            "name": "float",
+            "params": [
+                {
+                    "name": "range",
+                    "description": "The range/spread in which the returned number\n\t\tshould originate.",
+                    "type": "Number"
+                },
+                {
+                    "name": "min",
+                    "description": "The minimum starting value to offset the returned\n\t\tnumber specified by the range. If omitted, the returned number is\n\t\tbetween 0 and this value.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A number from within the specified range.",
+                "type": "Number"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 35,
+            "description": "Return an integer point number.",
+            "itemtype": "method",
+            "name": "int",
+            "params": [
+                {
+                    "name": "range",
+                    "description": "The range/spread in which the returned numbenr\n\t\tshould originate.",
+                    "type": "Number"
+                },
+                {
+                    "name": "min",
+                    "description": "The minimum starting value to offset the returned\n\t\tnumber specified by the range. If omitted, the returned number is\n\t\tbetween 0 and this value.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A number from within the specified range.",
+                "type": "Integer"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 52,
+            "description": "Return a String of the specified length.",
+            "itemtype": "method",
+            "name": "string",
+            "params": [
+                {
+                    "name": "len",
+                    "description": "The length of the String to return.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "A string with the specified length.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 70,
+            "description": "Return an identifier for Terminals.",
+            "itemtype": "method",
+            "name": "terminalID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying a terminal.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 80,
+            "description": "Return an identifier for Sessions.",
+            "itemtype": "method",
+            "name": "sessionID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying a session.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 90,
+            "description": "Return an identifier for Exceptions.",
+            "itemtype": "method",
+            "name": "exceptionID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying a exception.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 100,
+            "description": "Return an identifier for Collections.",
+            "itemtype": "method",
+            "name": "collectionID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying a collection.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 110,
+            "description": "Return an identifier for Events.",
+            "itemtype": "method",
+            "name": "eventID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying an event.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 120,
+            "description": "Return an identifier for Events.",
+            "itemtype": "method",
+            "name": "elementID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying an element.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 130,
+            "description": "Return an identifier for Events.",
+            "itemtype": "method",
+            "name": "edgeID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying an edge.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\util\\random.js",
+            "line": 140,
+            "description": "Return an identifier for Sets.",
+            "itemtype": "method",
+            "name": "setID",
+            "params": [
+                {
+                    "name": "now",
+                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A string for identifying a set.",
+                "type": "String"
+            },
+            "class": "Random",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 28,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "\"Library\"",
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 36,
+            "itemtype": "property",
+            "name": "description",
+            "type": "String",
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 43,
+            "description": "Username of who last updated this library.",
+            "itemtype": "property",
+            "name": "updater",
+            "type": "String",
+            "default": "\"System\"",
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 51,
+            "itemtype": "property",
+            "name": "updated",
+            "type": "Number",
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\server.js",
+            "line": 100,
+            "description": "Occurs when a Petition connects to an AccessSet successfully.",
+            "itemtype": "event",
+            "name": "establish",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Petition"
+                }
+            ],
+            "class": "LCARSServer",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\server.js",
+            "line": 110,
+            "description": "Occurs when a Petition appears valid but suffers an exception.",
+            "itemtype": "event",
+            "name": "malformed",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Anomaly"
+                }
+            ],
+            "class": "LCARSServer",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\server.js",
+            "line": 119,
+            "description": "Occurs when a Petition is received with an unknown event key.",
+            "itemtype": "event",
+            "name": "fault",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Petition"
+                }
+            ],
+            "class": "LCARSServer",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\server.js",
+            "line": 128,
+            "itemtype": "method",
+            "name": "broadcast",
+            "params": [
+                {
+                    "name": "message",
+                    "description": "The message to send to indicated connections.",
+                    "type": "Object"
+                },
+                {
+                    "name": "] [sessions",
+                    "description": "When specified, only the indicated sessions\n \t\twill receive the message.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "LCARSServer",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\server.js",
+            "line": 139,
+            "itemtype": "method",
+            "name": "terminate",
+            "params": [
+                {
+                    "name": "session",
+                    "description": "The identifier for the session to be terminated.",
+                    "type": "String"
+                }
+            ],
+            "class": "LCARSServer",
+            "module": "Elements"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nNote: When calculating distress, contribution by links is not required and should default to\n 100 / {The Number of Support Links}, ie. That link's percent of the support.",
+            "line": " library\\space\\circulation.js:18"
+        }
+    ]
+}

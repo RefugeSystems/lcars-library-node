@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 
 module.exports.resolve = function(configuration) {
 	return new Promise(function(done, fail) {
@@ -16,14 +17,14 @@ module.exports.resolve = function(configuration) {
 			option[opt] = configuration.mongoose[opt];
 		});
 		
-		if(configuration.mongoose.noauth === false || (load.user && load.pass && !configuration.mongoose.noauth)) {
-			option.auth = option.auth || {};
-			option.auth.user = option.auth.user || load.user;
-			option.auth.password = option.auth.password || load.pass;
-		} else {
+		if(configuration.mongoose.password === false || configuration.mongoose.pass === false) {
 			delete(option.auth);
 			delete(option.user);
 			delete(option.password);
+		} else {
+			option.auth = option.auth || {};
+			option.auth.user = option.auth.user || load.user;
+			option.auth.password = option.auth.password || load.pass;
 		}
 		
 		if(!load.host) {
