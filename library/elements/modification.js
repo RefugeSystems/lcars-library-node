@@ -25,7 +25,7 @@ module.exports = function(session, previous, resultant) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model("modification", new Schema({
+var Model = module.exports.model = configuration.connection.model("Modification", new Schema({
 
 	"occurred": Number,
 

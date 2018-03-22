@@ -26,7 +26,7 @@ module.exports = function(description, socket) {
 	return model;
 };
 
-var Model = this.model = configuration.connection.model("session", new Schema({
+var Model = this.model = configuration.connection.model("Session", new Schema({
 	/**
 	 * 
 	 * @property id

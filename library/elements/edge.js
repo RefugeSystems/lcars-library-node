@@ -26,7 +26,7 @@ module.exports = function(session, description) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model("edge", new Schema({
+var Model = module.exports.model = configuration.connection.model("Edge", new Schema({
 	/**
 	 * 
 	 * @property id

@@ -26,7 +26,7 @@ configuration
 
 		console.log("Set Policy: ", csp);
 		res.setHeader("Content-Security-Policy", "default-src 'self' https://refugesystems.net:3000 https://tower.refugesystems.net:3000 ws://tower.refugesystems.net:3000 wss://tower.refugesystems.net:3000; connect-src 'self' https://refugesystems.net:3000 https://tower.refugesystems.net:3000 ws://tower.refugesystems.net:3000 wss://tower.refugesystems.net:3000");
-		console.log("Policies: ", res.get('Content-Security-Policy'));
+		console.log("Policies: ", res.get("Content-Security-Policy"));
 		next();
 	};
 	

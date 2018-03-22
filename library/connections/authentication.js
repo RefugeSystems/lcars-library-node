@@ -4,6 +4,7 @@ var passport = require("passport");
 var Strategy = require("passport-google-oauth20").Strategy;
 var configuration = require("a-configuration");
 var Session = require("./session");
+var User = require("./user");
 
 var extractProfile = function(profile) {
 	var image = "none";
@@ -29,63 +30,63 @@ var extractProfile = function(profile) {
 };
 
 passport.use(new Strategy({
-		"clientID": configuration.passport.OAUTH2_CLIENT_ID,
-		"clientSecret": configuration.passport.OAUTH2_CLIENT_SECRET,
-		"callbackURL": configuration.passport.OAUTH2_CALLBACK,
-		"accessType": "offline"
-	}, function (req, accessToken, refreshToken, profile, done) {
-		var now = Date.now();
-		var session = random.string(128) + btoa(random.string(16) + req + now);
-		var connector = random.string(32);
-		var user = extractProfile(profile);
-		User.findOne({"gmail": user.email})
-		.then(function(rsuser) {
-			console.log("User Retrieved:\n", rsuser);
-			if(!rsuser) {
-				rsuser = new User({
-					"name": user.display,
-					"image": user.image,
-					"username": user.email,
-					"gmail": user.email,
-					"email": user.email,
-					"contact": "mailto:" + user.email,
-					"sessions": [],
-					"ips": []
-				});
-			}
-			session = new Session({
-				"username": rsuser.username,
-				"source": req,
-				"ips": [],
-				"authenticated": now,
-				"authenticator": session,
-				"connector": connector,
-				"last": now,
-				"user": rsuser._id
+	"clientID": configuration.passport.OAUTH2_CLIENT_ID,
+	"clientSecret": configuration.passport.OAUTH2_CLIENT_SECRET,
+	"callbackURL": configuration.passport.OAUTH2_CALLBACK,
+	"accessType": "offline"
+}, function (req, accessToken, refreshToken, profile, done) {
+	var now = Date.now();
+	var session = random.string(128) + btoa(random.string(16) + req + now);
+	var connector = random.string(32);
+	var user = extractProfile(profile);
+	User.findOne({"gmail": user.email})
+	.then(function(rsuser) {
+		console.log("User Retrieved:\n", rsuser);
+		if(!rsuser) {
+			rsuser = new User({
+				"name": user.display,
+				"image": user.image,
+				"username": user.email,
+				"gmail": user.email,
+				"email": user.email,
+				"contact": "mailto:" + user.email,
+				"sessions": [],
+				"ips": []
 			});
-			session.save()
-			.then(function(saved) {
-				console.log("Session Saved...");
-				rsuser.sessions.push(saved._id);
-				rsuser.save()
-				.then(function() {
-					console.log("User Saved...");
-					done(null, {"session": session, "user": rsuser});
-					console.log("...Done");
-				});
+		}
+		session = new Session({
+			"username": rsuser.username,
+			"source": req,
+			"ips": [],
+			"authenticated": now,
+			"authenticator": session,
+			"connector": connector,
+			"last": now,
+			"user": rsuser._id
+		});
+		session.save()
+		.then(function(saved) {
+			console.log("Session Saved...");
+			rsuser.sessions.push(saved._id);
+			rsuser.save()
+			.then(function() {
+				console.log("User Saved...");
+				done(null, {"session": session, "user": rsuser});
+				console.log("...Done");
 			});
-		})
-		.catch(function(err) {
-			done(err, user);
 		});
 	})
+	.catch(function(err) {
+		done(err, user);
+	});
+})
 );
 
 passport.serializeUser(function(req, processing, done) {
 	req._session = processing.session;
 	req._session.srcip = req.ip;
 	req._session.save();
-	
+
 	if(processing.user.ips.indexOf(req.ip) === -1) {
 		processing.user.ips.push(req.ip);
 		processing.user.save();
@@ -105,13 +106,11 @@ var passportBack = passport.authenticate("google", { scope: ["email", "profile"]
 
 var passportIncoming = function(req, res, next) {
 	console.log("Passport Incoming...");
-	logger.info({"point":"authenticating", "req":req});
 	next();
 };
 
 var passportProcess = function(req, res, next) {
-	logger.info({"point":"authenticated", "req":req});
-	util.log("Passport Processing:\n", req.originalUrl);
+	console.log("Passport Processing:\n", req.originalUrl);
 	next();
 };
 

@@ -10,6 +10,7 @@ var Event = this.Event = require("./event");
 var Edge = this.Edge = require("./edge");
 var Set = this.Set = require("./set");
 
+var active = {};
 this.element = {};
 this.edge = {};
 

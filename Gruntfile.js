@@ -21,7 +21,10 @@ module.exports = function(grunt) {
 					"require",
 					"console",
 					"Promise",
-					"global"
+					"global",
+					"process",
+					"btoa",
+					"atob"
 				],
 				/* http://eslint.org/docs/rules/ */
 				"rules": {
@@ -108,4 +111,5 @@ module.exports = function(grunt) {
 	grunt.registerTask("lint", ["eslint"]);
 	grunt.registerTask("docs", ["yuidoc"]);
 	grunt.registerTask("default", ["spec:live"]);
+	grunt.registerTask("test", ["spec"]);
 };

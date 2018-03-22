@@ -1,66 +1,115 @@
+"use strict";
 
-var Random = require("../util/random");
-
+var configuration = require("../config/config.js");
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var Authorization = require("./authorization.js").schema;
 
 /**
  * 
  * @class User
- * @constructor
- * @param {Object} details
  */
-module.exports = function(id, details) {
-	var user = this;
-	
-	fields.forEach(function(key) {
-		user[key] = details[key];
-		delete(details[key]);
-	});
-	
+module.exports = function(description) {
+	var model = new Model(description);
+	return model;
+};
+
+var Schema = this.schema = new Schema({
 	/**
-	 * 
+	 * Full name of user
+	 * @property name
+	 * @type String 
+	 */
+	"name": String,
+	/**
+	 * URL of profile picture
+	 * @property image
+	 * @type String 
+	 */
+	"image": String,
+	/**
+	 * User's username.
 	 * @property username
+	 * @type String 
+	 */
+	"username": String,
+	/**
+	 * User's GMail account for google auth.
+	 * @property gmail
+	 * @type String 
+	 */
+	"gmail": String,
+	/**
+	 * User's eMail account for general correspondence.
+	 * @property gmail
+	 * @type String 
+	 */
+	"email": String,
+	/**
+	 * Describes where to contact the user, type is prepended as
+	 * a protocol and is partially defined by parsing the contact
+	 * string for patterns.
+	 * @property contact
 	 * @type String
 	 */
-	
+	"contact": String,
 	/**
-	 * 
-	 * @property id
+	 * The minecraft user for this user
+	 * @property minecraft
 	 * @type String
 	 */
-	
+	"minecraft": String,
 	/**
-	 * Field values for arbitrary data.
-	 * @property data
+	 * The steam user for this user
+	 * @property steam
+	 * @type String
+	 */
+	"steam": String,
+	/**
+	 * BattleNet Tag
+	 * @property battlenet
+	 * @type String
+	 */
+	"battlenet": String,
+	/**
+	 * League of Legends Main
+	 * @property pvpnet
+	 * @type String
+	 */
+	"pvpnet": String,
+	/**
+	 * When this User was last modified wise of properties
+	 * or permissions.
+	 * @proptery modified
+	 * @type Number
+	 */
+	"modified": Number,
+	/**
+	 * Array of authorization descriptors for access control.
+	 * @property authorizations
+	 * @type Authorization
+	 */
+	"authorizations": [Authorization],
+	/**
+	 * Map of authorizations by grant for lookup. This is based on the
+	 * authorizations array and stored for debugging.
+	 * @property authorized
 	 * @type Object
 	 */
-	this.data = details;
-	
-	if(users.names[user.username] || users.ids[user.username]) {
-		throw new Error("Invalid ")
-	}
-};
+	"authorized": Schema.Types.Mixed,
+	/**
+	 * String array of session ObjectId's (This prevents
+	 * other sessions from being exposed in links).
+	 * @property sessions
+	 * @type String
+	 */
+	"sessions": [String],
+	/**
+	 * List of seen IPs for security purposes.
+	 * @property ips
+	 * @type String
+	 */
+	"ips": [String]
+});
 
-var fields = ["username", "id"];
-
-var users = {};
-users.names = {};
-users.ids = {};
-
-module.exports.get = function(id) {
-	return users.ids[id] || users.names[id];
-};
-
-/**
- * Return an identifier for a User.
- * @method userID
- * @static
- * @private
- * @return {String} A string for identifying an event. 
- */
-var userID = function() {
-	var id;
-	do {
-		id = "urID" + Random.string(32);
-	} while(users.ids[id]);
-	return id;
-};
+var Model = this.model = configuration.connection.model("User", Schema);

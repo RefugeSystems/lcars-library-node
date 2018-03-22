@@ -20,7 +20,7 @@ module.exports = function(session, origin, description) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model("event", new Schema({
+var Model = module.exports.model = configuration.connection.model("Event", new Schema({
 	/**
 	 * 
 	 * @property id
