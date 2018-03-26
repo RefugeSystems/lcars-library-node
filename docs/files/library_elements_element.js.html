@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -145,8 +144,15 @@ var Distress = new Schema({
  * @param {Object} description
  */
 module.exports = function(session, description) {
+	if(!description.name) {
+		throw new Error(&quot;Elements require a name&quot;);
+	}
+	
 	var model = new Model(description);
 	model.id = random.elementID();
+	model.status = description.status || 0;
+	model.distress = description.distress || 100;
+	model.active = description.active === true || description.active === false?description.active:true;
 	model.creater = session.id;
 	model.created = Date.now();
 	model.modifier = session.id;
@@ -159,7 +165,7 @@ module.exports = function(session, description) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model(&quot;element&quot;, new Schema({
+var Model = module.exports.model = configuration.connection.model(&quot;Element&quot;, new Schema({
 	/**
 	 * 
 	 * @property id
@@ -180,6 +186,20 @@ var Model = module.exports.model = configuration.connection.model(&quot;element&
 	 * @type String
 	 */
 	&quot;description&quot;: String,
+	
+	/**
+	 * 
+	 * @property status
+	 * @type Number
+	 */
+	&quot;status&quot;: Number,
+	
+	/**
+	 * 
+	 * @property distress
+	 * @type Number
+	 */
+	&quot;distress&quot;: Number,
 	
 	/**
 	 * 

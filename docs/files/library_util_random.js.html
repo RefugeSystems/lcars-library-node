@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -196,16 +195,6 @@ this.sessionID = function(now) {
  */
 this.exceptionID = function(now) {
 	return &quot;exception:&quot; + (now || Date.now()) + &quot;:&quot; + this.string(19);
-};
-
-/**
- * Return an identifier for Collections.
- * @method collectionID
- * @param {Number} [now] Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().
- * @return {String} A string for identifying a collection. 
- */
-this.collectionID = function(now) {
-	return &quot;collection:&quot; + (now || Date.now()) + &quot;:&quot; + this.string(19);
 };
 
 /**

@@ -1,9 +1,8 @@
 "use strict";
 
-var configuration = require("../config/config.js");
+var configuration = require("a-configuration");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Authorization = require("./authorization.js").schema;
 
 /**
  * 
@@ -84,12 +83,6 @@ var Schema = this.schema = new Schema({
 	 * @type Number
 	 */
 	"modified": Number,
-	/**
-	 * Array of authorization descriptors for access control.
-	 * @property authorizations
-	 * @type Authorization
-	 */
-	"authorizations": [Authorization],
 	/**
 	 * Map of authorizations by grant for lookup. This is based on the
 	 * authorizations array and stored for debugging.

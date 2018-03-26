@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -113,11 +112,13 @@ var random = require(&quot;../util/random&quot;);
  * @param {String} target
  * @param {Object} description
  */
-module.exports = function(session, source, target, description) {
+module.exports = function(session, description) {
+	if(!description.source || !description.target) {
+		throw new Error(&quot;Links require source, and target&quot;);
+	}
+	
 	var model = new Model(description);
 	model.id = random.edgeID();
-	model.source = source;
-	model.target = target;
 	model.creater = session.id;
 	model.created = Date.now();
 	model.modifier = session.id;
@@ -125,7 +126,7 @@ module.exports = function(session, source, target, description) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model(&quot;edge&quot;, new Schema({
+var Model = module.exports.model = configuration.connection.model(&quot;Edge&quot;, new Schema({
 	/**
 	 * 
 	 * @property id
@@ -141,15 +142,21 @@ var Model = module.exports.model = configuration.connection.model(&quot;edge&quo
 	&quot;name&quot;: String,
 	
 	/**
-	 * Links exist in distinct sets that may or may not be part of the master set.
+	 * Links exist in distinct pages that may or may not be part of the master page.
 	 * This allows resources to be expressed in different manners and for those manners to inherit
-	 * a set or not.
+	 * a page or not.
 	 * 
-	 * 
-	 * @property set
+	 * @property page
 	 * @type String
 	 */
-	&quot;set&quot;: String,
+	&quot;page&quot;: String,
+	
+	/**
+	 * When true, this link is considered limited to the set and not the master list.
+	 * @property private
+	 * @type Boolean 
+	 */
+	&quot;private&quot;: Boolean,
 	
 	/**
 	 * When determining if an element is &quot;in distress&quot; or not, the contribution of all supporting

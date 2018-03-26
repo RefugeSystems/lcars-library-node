@@ -8,7 +8,7 @@ var Modification = this.Modification = require("./modification");
 var Element = this.Element = require("./element");
 var Event = this.Event = require("./event");
 var Edge = this.Edge = require("./edge");
-var Set = this.Set = require("./set");
+var Page = this.Page = require("./page");
 
 var active = {};
 this.element = {};

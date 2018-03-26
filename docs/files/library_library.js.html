@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -100,6 +99,8 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 
+var EventEmitter = require(&quot;events&quot;);
+
 /**
  * 
  * @class LCARSLibrary
@@ -107,21 +108,27 @@
  * @param {Object} configuration
  */
 module.exports = function(configuration) {
+
+	var access = configuration.access || {};
+	var library = this;
 	
+	this.connections = {};
 	this.properties = {};
 	this.neighbors = {};
 	this.element = {};
 	this.edge = {};
+	this.sets = [];
 	this.set = {};
 	
 	var active = {};
 	
-	var Elements = require(&quot;./elements&quot;);
+	var Elements = this.elements = require(&quot;./elements&quot;);
 	var Modification = Elements.Modification;
 	var Element = Elements.Element;
 	var Edge = Elements.Edge;
+	var Page = Elements.Page;
 
-	var Space = require(&quot;./space&quot;);
+	var Space = this.space = require(&quot;./space&quot;);
 	var Circulation = Space.Circulation;
 	var Search = Space.Search;
 	var Set = Space.Set;
@@ -166,150 +173,125 @@ module.exports = function(configuration) {
 	
 	this.properties.port = configuration.port;
 	
-
 	
-	this.set.establish = function(session, description) {
+	this.element.create = function(session, request, data) {
 		return new Promise(function(done, fail) {
-			var set = new Set();
-		});
-	};
-	
-	this.set.drop = function(session, description) {
-		return new Promise(function(done, fail) {
+			checkAccess(session, request, &quot;create:element&quot;);
+			var edge = new Element(session, data);
 			
 		});
 	};
 	
 	
-	
-	
-	this.element.retrieve = function(session, description) {
-		return eRetrieve(Element, session, description);
-	};
-	
-	this.element.write = function(session, description) {
-		return eWrite(Element, session, description);
-	};
-	
-	this.element.drop = function(session, description) {
-		return eDrop(Element, session, description);
-	};
-	
-	this.edge.retrieve = function(session, description) {
-		return eRetrieve(Edge, session, description);
-	};
-	
-	this.edge.write = function(session, description) {
-		return eWrite(Edge, session, description);
-	};
-	
-	this.edge.drop = function(session, description) {
-		return eDrop(Edge, session, description);
-	};
-	
-
-	var eRetrieve = function(Constructor, session, description) {
+	this.edge.create = function(session, request, data) {
 		return new Promise(function(done, fail) {
-			if(description.id) {
-				if(active[description.id]) {
-					done(active[description.id]);
-				} else {
-					Constructor.model.findOne({&quot;id&quot;:description.id})
-					.then(function(element) {
-						done(element);
-					})
-					.catch(fail);
-				}
-			} else {
-				fail(new Error(&quot;No ID present&quot;));
-			}
+			checkAccess(session, request, &quot;create:edge&quot;);
+			var edge = new Edge(session, data);
 		});
 	};
 
-	var eWrite = function(Constructor, session, description) {
+	
+	
+	this.set.connect = function(session, request, id) {
 		return new Promise(function(done, fail) {
-			var previous, resultant;
-			
-			if(description.id) {
-				if(active[description.id]) {
-					previous = active[description.id].toJSON();
-					Object.assign(active[description.id], description);
-					resultant = active[description.id].toJSON();
-					active[description.id].save()
-					.then(function() {
-						done(active[description.id]);
-					})
-					.catch(fail)
-					.finally(function() {
-						var mod = new Modification(session, previous, resultant);
-						mod.save()
-						.catch(function(err) {
-							console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
-						});
-					});
-				} else {
-					Constructor.model.findOne({&quot;id&quot;:description.id})
-					.then(function(model) {
-						console.log(&quot; -- Found: &quot;, model);
-						if(model) {
-							previous = model.toJSON();
-							Object.assign(model, description);
-							resultant = model.toJSON();
-							model.save()
-							.then(function() {
-								done(model);
-							})
-							.catch(fail);
-						} else {
-							fail(new Error(&quot;Element not found&quot;));
-						}
-					})
-					.catch(fail)
-					.finally(function() {
-						var mod = new Modification(session, previous, resultant);
-						mod.save()
-						.catch(function(err) {
-							console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
-						});
-					});
-				}
-			} else {
-				var model = new Constructor(session, description);
-				model.save()
-				.then(function() {
-					previous = null;
-					resultant = model.toJSON();
-					done(model);
-				})
-				.catch(fail)
-				.finally(function() {
-					var mod = new Modification(session, previous, resultant);
-					mod.save()
-					.catch(function(err) {
-						console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
-					});
-				});
+			checkAccess(session, request, &quot;connect:set&quot;);
+			done(library.set[id]);
+		});
+	};
+	
+	this.set.establish = function(session, request, pages, options) {
+		return new Promise(function(done, fail) {
+			checkAccess(session, request, &quot;establish:set&quot;);
+			var set = new Set(pages, options);
+			library.sets.push(set);
+			library.set[set.id] = set;
+			done(set);
+		});
+	};
+	
+	this.set.drop = function(session, request, id) {
+		return new Promise(function(done, fail) {
+			checkAccess(session, request, &quot;establish:set&quot;);
+			if(library.set[id]) {
+				library.sets.splice(library.sets.indexOf(library.set[id]), 1);
+				delete(library.set[id]);
 			}
+			done();
 		});
 	};
 
-	var eDrop = function(Constructor, session, description) {
-		return new Promise(function(done, fail) {
-			var previous;
-			Constructor.model.remove({&quot;id&quot;:description.id})
-			.then(function(model) {
-				previous = model.toJSON();
-				done(model);
-			})
-			.catch(fail)
-			.finally(function() {
-				var mod = new Modification(session, previous);
-				mod.save()
-				.catch(function(err) {
-					console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
-				});
+	var emitter = new EventEmitter();
+	this.on = emitter.on;
+	this.once = emitter.once;
+	this.off = emitter.off;
+	this.listen = emitter.listen;
+	
+	/**
+	 * 
+	 * @method emit
+	 * @param {Session} session
+	 * @param {String} request
+	 * @param {String} key
+	 * @param {Object} data
+	 * @param {String} origin
+	 * @throws {Object} On no access
+	 */
+	this.emit = function(session, request, key, data, origin) {
+		checkAccess(session, request, &quot;library:emit&quot;);
+		
+		if(!origin || !library.elements[origin]) {
+			emitter.emit(key, {
+				&quot;id&quot;: random.eventID(),
+				&quot;key&quot;: key,
+				&quot;emitted&quot;: Date.now(),
+				&quot;data&quot;: data,
+				&quot;origin&quot;: &quot;user:&quot; + session.username
 			});
-		});
+		} else {
+			Element.model.find({&quot;id&quot;: origin})
+			.then(function(list) {
+				if(list.length) {
+					
+				}
+			})
+			.catch(function(error) {
+				
+			});
+		}
+	};
+
+	/**
+	 * 
+	 * @method propagating
+	 * @param {String} id The Element causing the event emission from this set.
+	 * @param {Event} event The Event that is propagating.
+	 */
+	this.propagating = function(id, event) {
+		
+	};
+	
+	/**
+	 * 
+	 * @method checkAccess
+	 * @private
+	 * @param {Session} session
+	 * @param {String} request
+	 * @param {String} action
+	 * @throws {Object} On no access
+	 */
+	var checkAccess = function(session, request, action) {
+		if(access &amp;&amp; access[action] &amp;&amp; access.path) {
+			if(!session.access[access.path] || !session.access[access.path][action]) {
+				var error = {
+					&quot;request&quot;: request,
+					&quot;error&quot;: {
+						&quot;message&quot;: &quot;Access Denied&quot;
+					}
+				};
+				
+				throw error;
+			}
+		}
 	};
 };
 

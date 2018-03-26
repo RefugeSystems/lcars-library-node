@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -105,11 +104,135 @@
  * @module Elements
  * @main
  */
-this.Modification = require(&quot;./modification&quot;);
-this.Element = require(&quot;./element&quot;);
-this.Event = require(&quot;./event&quot;);
-this.Edge = require(&quot;./edge&quot;);
-this.Set = require(&quot;./set&quot;);
+var Modification = this.Modification = require(&quot;./modification&quot;);
+var Element = this.Element = require(&quot;./element&quot;);
+var Event = this.Event = require(&quot;./event&quot;);
+var Edge = this.Edge = require(&quot;./edge&quot;);
+var Page = this.Page = require(&quot;./page&quot;);
+
+var active = {};
+this.element = {};
+this.edge = {};
+
+this.element.retrieve = function(session, description) {
+	return eRetrieve(Element, session, description);
+};
+
+this.element.write = function(session, description) {
+	return eWrite(Element, session, description);
+};
+
+this.element.drop = function(session, description) {
+	return eDrop(Element, session, description);
+};
+
+this.edge.retrieve = function(session, description) {
+	return eRetrieve(Edge, session, description);
+};
+
+this.edge.write = function(session, description) {
+	return eWrite(Edge, session, description);
+};
+
+this.edge.drop = function(session, description) {
+	return eDrop(Edge, session, description);
+};
+
+
+var eRetrieve = function(Constructor, session, description) {
+	return new Promise(function(done, fail) {
+		if(description.id) {
+			if(active[description.id]) {
+				done(active[description.id]);
+			} else {
+				Constructor.model.findOne({&quot;id&quot;:description.id})
+				.then(function(element) {
+					done(element);
+				})
+				.catch(fail);
+			}
+		} else {
+			fail(new Error(&quot;No ID present&quot;));
+		}
+	});
+};
+
+var eWrite = function(Constructor, session, description) {
+	return new Promise(function(done, fail) {
+		var previous, resultant;
+		
+		if(description.id) {
+			if(active[description.id]) {
+				previous = JSON.stringify(active[description.id]);
+				Object.assign(active[description.id], description);
+				resultant = JSON.stringify(active[description.id]);
+				active[description.id].save()
+				.then(function() {
+					done(active[description.id]);
+					var mod = new Modification(session, previous, resultant);
+					mod.save()
+					.catch(function(err) {
+						console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
+					});
+				})
+				.catch(fail);
+			} else {
+				Constructor.model.findOne({&quot;id&quot;:description.id})
+				.then(function(model) {
+					if(model) {
+						previous = JSON.stringify(model);
+						Object.assign(model, description);
+						resultant = JSON.stringify(model);
+						model.save()
+						.then(function() {
+							done(model);
+							var mod = new Modification(session, previous, resultant);
+							mod.save()
+							.catch(function(err) {
+								console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
+							});
+						})
+						.catch(fail);
+					} else {
+						fail(new Error(&quot;Element not found&quot;));
+					}
+				})
+				.catch(fail);
+			}
+		} else {
+			var model = new Constructor(session, description);
+			model.save()
+			.then(function() {
+				previous = null;
+				resultant = JSON.stringify(model);
+				done(model);
+				var mod = new Modification(session, previous, resultant);
+				mod.save()
+				.catch(function(err) {
+					console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
+				});
+			})
+			.catch(fail);
+		}
+	});
+};
+
+var eDrop = function(Constructor, session, description) {
+	return new Promise(function(done, fail) {
+		var previous;
+		Constructor.model.remove({&quot;id&quot;:description.id})
+		.then(function(model) {
+			previous = JSON.stringify(model);
+			done(model);
+			var mod = new Modification(session, previous);
+			mod.save()
+			.catch(function(err) {
+				console.log(&quot;Failed to save modification: &quot; + err.message, err.stack);
+			});
+		})
+		.catch(fail);
+	});
+};
 
     </pre>
 </div>

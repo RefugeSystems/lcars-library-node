@@ -9,7 +9,7 @@ var Edge = require("../elements/edge");
  * @param {Event} event
  * @param {Array} collections
  */
-module.exports = function(event, collections) {
+module.exports = function(event, pages) {
 	
 	
 

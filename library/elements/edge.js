@@ -42,15 +42,14 @@ var Model = module.exports.model = configuration.connection.model("Edge", new Sc
 	"name": String,
 	
 	/**
-	 * Links exist in distinct sets that may or may not be part of the master set.
+	 * Links exist in distinct pages that may or may not be part of the master page.
 	 * This allows resources to be expressed in different manners and for those manners to inherit
-	 * a set or not.
+	 * a page or not.
 	 * 
-	 * 
-	 * @property set
+	 * @property page
 	 * @type String
 	 */
-	"set": String,
+	"page": String,
 	
 	/**
 	 * When true, this link is considered limited to the set and not the master list.

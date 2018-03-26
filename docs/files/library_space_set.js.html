@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -104,54 +103,151 @@ var Random = require(&quot;../util/random&quot;);
 
 var Element = require(&quot;../elements/element&quot;);
 
-var Link = require(&quot;../elements/edge&quot;);
+var Edge = require(&quot;../elements/edge&quot;);
+
+var Page = require(&quot;../elements/page&quot;);
+
+var EventEmitter = require(&quot;events&quot;);
 
 /**
  * 
  * 
  * @class Set
  * @constructor
- * @param {Object} description
- * @param {Object} options
+ * @param {Object} [pages]
+ * @param {Object} [options]
  */
-module.exports = function(collections, elements, edges, options) {
-	
-	
-	var elements = {};
-	
-	
-	var links = {};
+module.exports = function(pages, options) {
+	var p;
 	
 	/**
 	 * 
 	 * @property id
 	 * @type String
 	 */
-	this.id = random.setID();
+	this.id = options.id || random.setID();
 	
+	options = options || {};
 	
-	this.collections = [];
+	var path = options.path || this.id;
 	
+	var pages = options.pages;
+	
+	var access = options.access || null;
+	
+	var elements = {};
+	elements.list = [];
+	elements.ids = [];
+	
+	var edges = {};
+	edges.list = [];
+	edges.ids = [];
+	
+	this.collections = pages || null;
+	
+	this.hasElement = function(id) {
+		
+	};
 
-	this.addElement = function(session, id) {
-		
+	this.addElements = function(session, request, ids) {
+		if(checkAccess(session, request, &quot;add:element&quot;)) {
+			Element.model.find({&quot;id&quot;:{$in:ids}})
+			.lean()
+			.then(function(elements) {
+				elements.forEach(function(element) {
+					elements[element.id] = element;
+					elements.list.push(element);
+					elements.ids.push(element.id);
+				});
+				emitter.emit(&quot;added&quot;, {
+					&quot;elements&quot;: elements,
+					&quot;type&quot;: &quot;additive&quot;,
+					&quot;category&quot;: &quot;element&quot;,
+					&quot;request&quot;: request
+				});
+			})
+			.catch(function(error) {
+				emitter.emit(&quot;error&quot;, {
+					&quot;request&quot;: request,
+					&quot;type&quot;: &quot;additive&quot;,
+					&quot;category&quot;: &quot;element&quot;,
+					&quot;error&quot;: error
+				});
+			});
+		}
 	};
 	
-	
-	this.addLink = function(session, id) {
-		
+	this.addEdges = function(session, request, ids, pages) {
+		if(checkAccess(session, request, &quot;add:edge&quot;)) {
+			var query = {&quot;id&quot;:{&quot;$in&quot;:ids}};
+			if(pages) {
+				query.page = {&quot;page&quot;:{&quot;$in&quot;:pages}};
+			} else {
+				query.private = false;
+			}
+			Edge.model.find(query)
+			.lean()
+			.then(function(edges) {
+				edges.forEach(function(edge) {
+					edges[edge.id] = edge;
+					edges.list.push(edge);
+					edges.ids.push(edge.id);
+				});
+				emitter.emit(&quot;added&quot;, {
+					&quot;edges&quot;: edges,
+					&quot;type&quot;: &quot;additive&quot;,
+					&quot;category&quot;: &quot;edge&quot;,
+					&quot;request&quot;: request
+				});
+			})
+			.catch(function(error) {
+				emitter.emit(&quot;error&quot;, {
+					&quot;request&quot;: request,
+					&quot;type&quot;: &quot;additive&quot;,
+					&quot;category&quot;: &quot;edge&quot;,
+					&quot;error&quot;: error
+				});
+			});
+		}
 	};
 	
-	
-	this.pruneElement = function(session, id) {
-		
+	this.pruneElements = function(session, request, ids) {
+		if(checkAccess(session, request, &quot;add:element&quot;)) {
+			var removed = [];
+			ids.forEach(function(eid) {
+				if(elements[eid]) {
+					removed.push(elements[eid]);
+					elements.list.splice(elements.list.indexOf(elements[eid]), 1);
+					delete(elements[eid]);
+				}
+			});
+			emitter.emit(&quot;removed&quot;, {
+				&quot;elements&quot;: removed,
+				&quot;type&quot;: &quot;subtractive&quot;,
+				&quot;category&quot;: &quot;element&quot;,
+				&quot;request&quot;: request
+			});
+		}
 	};
 	
-	
-	this.pruneLink = function(session, id) {
-		
+	this.pruneEdges = function(session, request, ids) {
+		if(checkAccess(session, request, &quot;add:edge&quot;)) {
+			var removed = [];
+			ids.forEach(function(eid) {
+				if(edges[eid]) {
+					removed.push(edges[eid]);
+					edges.list.splice(edges.list.indexOf(edges[eid]), 1);
+					delete(edges[eid]);
+				}
+			});
+			emitter.emit(&quot;removed&quot;, {
+				&quot;edges&quot;: removed,
+				&quot;type&quot;: &quot;subtractive&quot;,
+				&quot;category&quot;: &quot;edge&quot;,
+				&quot;request&quot;: request
+			});
+		}
 	};
-	
 	
 	var emitter = new EventEmitter();
 	this.on = emitter.on;
@@ -162,29 +258,62 @@ module.exports = function(collections, elements, edges, options) {
 	/**
 	 * 
 	 * @method emit
+	 * @param {Session} session
 	 * @param {String} key Identifier for the event to emit, a key prefix of &quot;ext-&quot; indicating
 	 * 		external origin is required and added automatically if omitted.
 	 * @param {Object} data
+	 * @param {String} origin
+	 * @throws {Error} On access denial 
 	 */
-	this.emit = function(key, data) {
-		var id, error;
-		
-		if(key) {
-			if(key[0] !== &quot;e&quot; || key[1] !== &quot;x&quot; || key[2] !== &quot;t&quot; || key[3] !== &quot;-&quot;) {
-				key = &quot;ext-&quot; + key;
+	this.emit = function(session, request, key, data, origin) {
+		if(checkAccess(session, request, &quot;emit:set&quot;)) {
+			if(!origin || !elements[origin]) {
+				origin = &quot;user:&quot; + session.username;
 			}
-		} else {
-			key = &quot;ext-generic&quot;;
+			
+			data = {
+				&quot;id&quot;: random.eventID(),
+				&quot;key&quot;: key,
+				&quot;emitted&quot;: Date.now(),
+				&quot;data&quot;: data,
+				&quot;origin&quot;: origin
+			};
+			
+			emitter.emit(key, data);
 		}
+	};
 
-		data = {
-			&quot;id&quot;: random.eventID(),
-			&quot;key&quot;: key,
-			&quot;emitted&quot;: Date.now(),
-			&quot;data&quot;: data
-		};
+	/**
+	 * 
+	 * @method propagating
+	 * @param {String} id The Element causing the event emission from this set.
+	 * @param {Event} event The Event that is propagating.
+	 */
+	this.propagating = function(id, event) {
 		
-		emitter.emit(key, data);
+	};
+	
+	/**
+	 * 
+	 * @method checkAccess
+	 * @param {Session} session
+	 * 
+	 * @return {Boolean}
+	 */
+	var checkAccess = function(session, request, action) {
+		if(access &amp;&amp; access[action] &amp;&amp; access.path) {
+			if(!session.access[access.path] || !session.access[access.path][action]) {
+				emitter.emit(&quot;error&quot;, {
+					&quot;request&quot;: request,
+					&quot;action&quot;: action,
+					&quot;error&quot;: {
+						&quot;message&quot;: &quot;Access Denied&quot;
+					}
+				});
+				return false;
+			}
+		}
+		return true;
 	};
 };
 

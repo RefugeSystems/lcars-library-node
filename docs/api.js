@@ -14,7 +14,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "Random",
         "Search",
         "Session",
-        "SessionMarker",
         "Set",
         "Storage",
         "Terminal",

@@ -21,7 +21,7 @@ module.exports = function(session, description) {
 	return model;
 };
 
-var Model = module.exports.model = configuration.connection.model("Set", new Schema({
+var Model = module.exports.model = configuration.connection.model("Page", new Schema({
 	/**
 	 * 
 	 * @property id
@@ -37,7 +37,7 @@ var Model = module.exports.model = configuration.connection.model("Set", new Sch
 	"name": String,
 	
 	/**
-	 * When true, edges in this set are considered limited to the set and not the master list.
+	 * When true, edges in this page are considered limited to the page and not the master list.
 	 * @property private
 	 * @type Boolean 
 	 */
@@ -58,7 +58,7 @@ var Model = module.exports.model = configuration.connection.model("Set", new Sch
 	"fields": Object,
 	
 	/**
-	 * Array of set IDs that should be considered a subgroup of this set.
+	 * Array of page IDs that should be considered a subgroup of this page.
 	 * @property touched
 	 * @type Array | String
 	 */

@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -100,7 +99,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/library_space_set.js.html#l8"><code>library\space\set.js:8</code></a>
+            Defined in: <a href="../files/library_space_set.js.html#l12"><code>library\space\set.js:12</code></a>
         </div>
 
             Module: <a href="../modules/Elements.html">Elements</a>
@@ -140,7 +139,7 @@ purposes for how they connect and can inherit from one another.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_space_set.js.html#l8"><code>library\space\set.js:8</code></a>
+        <a href="../files/library_space_set.js.html#l12"><code>library\space\set.js:12</code></a>
         </p>
 
 
@@ -200,7 +199,15 @@ purposes for how they connect and can inherit from one another.</p>
 
                     <ul class="index-list methods">
                             <li class="index-item method">
+                                <a href="#method_checkAccess">checkAccess</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_emit">emit</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_propagating">propagating</a>
 
                             </li>
                     </ul>
@@ -247,6 +254,10 @@ purposes for how they connect and can inherit from one another.</p>
 
                             </li>
                             <li class="index-item property">
+                                <a href="#property_private">private</a>
+
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_touched">touched</a>
 
                             </li>
@@ -259,20 +270,20 @@ purposes for how they connect and can inherit from one another.</p>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_emit" class="method item">
-    <h3 class="name"><code>emit</code></h3>
+<div id="method_checkAccess" class="method item">
+    <h3 class="name"><code>checkAccess</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>key</code>
-                </li>
-                <li class="arg">
-                        <code>data</code>
+                        <code>session</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
 
 
 
@@ -283,7 +294,7 @@ purposes for how they connect and can inherit from one another.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_space_set.js.html#l61"><code>library\space\set.js:61</code></a>
+        <a href="../files/library_space_set.js.html#l196"><code>library\space\set.js:196</code></a>
         </p>
 
 
@@ -298,6 +309,84 @@ purposes for how they connect and can inherit from one another.</p>
             <h4>Parameters:</h4>
 
             <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">session</code>
+                        <span class="type"><a href="../classes/Session.html" class="crosslink">Session</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_emit" class="method item">
+    <h3 class="name"><code>emit</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>session</code>
+                </li>
+                <li class="arg">
+                        <code>key</code>
+                </li>
+                <li class="arg">
+                        <code>data</code>
+                </li>
+                <li class="arg">
+                        <code>origin</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/library_space_set.js.html#l158"><code>library\space\set.js:158</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">session</code>
+                        <span class="type"><a href="../classes/Session.html" class="crosslink">Session</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
                 <li class="param">
                         <code class="param-name">key</code>
                         <span class="type">String</span>
@@ -317,6 +406,92 @@ external origin is required and added automatically if omitted.</p>
 
                     <div class="param-description">
                          
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">origin</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                        <span class="type">Error</span>:
+                    <p>On access denial</p>
+
+            </div>
+        </div>
+
+</div>
+<div id="method_propagating" class="method item">
+    <h3 class="name"><code>propagating</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+                <li class="arg">
+                        <code>event</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/library_space_set.js.html#l186"><code>library\space\set.js:186</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The Element causing the event emission from this set.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="../classes/Event.html" class="crosslink">Event</a></span>
+
+
+                    <div class="param-description">
+                        <p>The Event that is propagating.</p>
+
                     </div>
 
                 </li>
@@ -342,7 +517,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l69"><code>library\elements\set.js:69</code></a>
+        <a href="../files/library_elements_page.js.html#l74"><code>library\elements\page.js:74</code></a>
         </p>
 
 
@@ -366,7 +541,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l62"><code>library\elements\set.js:62</code></a>
+        <a href="../files/library_elements_page.js.html#l67"><code>library\elements\page.js:67</code></a>
         </p>
 
 
@@ -390,7 +565,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l41"><code>library\elements\set.js:41</code></a>
+        <a href="../files/library_elements_page.js.html#l46"><code>library\elements\page.js:46</code></a>
         </p>
 
 
@@ -415,7 +590,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l48"><code>library\elements\set.js:48</code></a>
+        <a href="../files/library_elements_page.js.html#l53"><code>library\elements\page.js:53</code></a>
         </p>
 
 
@@ -440,7 +615,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l27"><code>library\elements\set.js:27</code></a>
+        <a href="../files/library_elements_page.js.html#l25"><code>library\elements\page.js:25</code></a>
         </p>
 
 
@@ -464,7 +639,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_space_set.js.html#l24"><code>library\space\set.js:24</code></a>
+        <a href="../files/library_space_set.js.html#l23"><code>library\space\set.js:23</code></a>
         </p>
 
 
@@ -488,7 +663,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l83"><code>library\elements\set.js:83</code></a>
+        <a href="../files/library_elements_page.js.html#l88"><code>library\elements\page.js:88</code></a>
         </p>
 
 
@@ -512,7 +687,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l76"><code>library\elements\set.js:76</code></a>
+        <a href="../files/library_elements_page.js.html#l81"><code>library\elements\page.js:81</code></a>
         </p>
 
 
@@ -536,7 +711,7 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l34"><code>library\elements\set.js:34</code></a>
+        <a href="../files/library_elements_page.js.html#l32"><code>library\elements\page.js:32</code></a>
         </p>
 
 
@@ -544,6 +719,31 @@ external origin is required and added automatically if omitted.</p>
 
     <div class="description">
         
+    </div>
+
+
+
+</div>
+<div id="property_private" class="property item">
+    <h3 class="name"><code>private</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/library_elements_page.js.html#l39"><code>library\elements\page.js:39</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>When true, edges in this page are considered limited to the page and not the master list.</p>
+
     </div>
 
 
@@ -560,14 +760,14 @@ external origin is required and added automatically if omitted.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/library_elements_set.js.html#l55"><code>library\elements\set.js:55</code></a>
+        <a href="../files/library_elements_page.js.html#l60"><code>library\elements\page.js:60</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>Array of set IDs that should be considered a subgroup of this set.</p>
+        <p>Array of page IDs that should be considered a subgroup of this page.</p>
 
     </div>
 

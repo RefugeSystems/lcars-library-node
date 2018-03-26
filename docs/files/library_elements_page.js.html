@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>library\models\sessionMarker.js - lcars-library-node</title>
+    <title>library\elements\page.js - lcars-library-node</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -95,40 +94,104 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: library\models\sessionMarker.js</h1>
+<h1 class="file-heading">File: library\elements\page.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-
 var configuration = require(&quot;a-configuration&quot;);
-var mongoose = require(&quot;mongoose&quot;);
-var Schema = mongoose.Schema;
+var Schema = require(&quot;mongoose&quot;).Schema;
+var random = require(&quot;../util/random&quot;);
 
 /**
- * 
- * @class SessionMarker
+ * Represents the set of links that connect elements. Various collections serve different
+ * purposes for how they connect and can inherit from one another. 
+ * @class Set
+ * @module Elements
  * @constructor
+ * @param {Object} session 
+ * @param {Object} description
  */
-module.exports.schema = new Schema({
+module.exports = function(session, description) {
+	var model = new Model(description);
+	model.id = random.setID();
+	model.creater = session.id;
+	model.created = Date.now();
+	model.modifier = session.id;
+	model.modified = model.created;
+	return model;
+};
+
+var Model = module.exports.model = configuration.connection.model(&quot;Page&quot;, new Schema({
 	/**
 	 * 
-	 * @property userID
+	 * @property id
 	 * @type String
 	 */
-	&quot;userID&quot;: String,
+	&quot;id&quot;: String,
+	
 	/**
 	 * 
-	 * @property sessionID
+	 * @property name
 	 * @type String
 	 */
-	&quot;sessionID&quot;: String,
+	&quot;name&quot;: String,
+	
+	/**
+	 * When true, edges in this page are considered limited to the page and not the master list.
+	 * @property private
+	 * @type Boolean 
+	 */
+	&quot;private&quot;: Boolean,
+	
+	/**
+	 * Markdown style string describing the purpose of the set.
+	 * @property description
+	 * @type String
+	 */
+	&quot;description&quot;: String,
+	
+	/**
+	 * Custom fields to use to tag the set for informational purposes.
+	 * @property fields
+	 * @type Object
+	 */
+	&quot;fields&quot;: Object,
+	
+	/**
+	 * Array of page IDs that should be considered a subgroup of this page.
+	 * @property touched
+	 * @type Array | String
+	 */
+	&quot;encompasses&quot;: [String],
+	
 	/**
 	 * 
-	 * @property time
+	 * @property creater
+	 * @type String
+	 */
+	&quot;creater&quot;: String,
+	
+	/**
+	 * 
+	 * @property created
 	 * @type Number
 	 */
-	&quot;time&quot;: Number
-});
+	&quot;created&quot;: Number,
+	
+	/**
+	 * 
+	 * @property modifier
+	 * @type String
+	 */
+	&quot;modifier&quot;: String,
+	
+	/**
+	 * 
+	 * @property modified
+	 * @type Number
+	 */
+	&quot;modified&quot;: Number
+}));
 
     </pre>
 </div>

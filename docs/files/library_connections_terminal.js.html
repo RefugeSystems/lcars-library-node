@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -104,12 +103,21 @@
  * 
  * @class Terminal
  * @constructor
- * @param {Session} session
- * @param {User} user
- * @param {WebSocket} socket
+ * @param {WebSocket} connection
+ * @param {Library} library
  */
-module.exports = function(session, user, socket) {
+module.exports = function(connection, library) {
+	this.last = Date.now();
+	this.session = null;
+	this.active = true;
+
+	connection.on(&quot;message&quot;, function(message) {
+		console.log(&quot;Message: &quot;, message);
+	});
 	
+	connection.on(&quot;close&quot;, function() {
+		console.log(&quot;Close Connection&quot;);
+	});
 };
 
     </pre>

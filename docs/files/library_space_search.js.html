@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -106,6 +105,52 @@
  * @constructor
  * @static
  */
+
+var Elements = require(&quot;../elements&quot;);
+var Element = Elements.Element;
+var Edge = Elements.Edge;
+
+/**
+ * 
+ * @method adjacent
+ * @param {String} source Element ID
+ * @param {Object} [filter] Specifies specific element types to handle differently.
+ * @param {String} [collection] If omitted, only links available to the master space are considered,
+ * 		otherwise links are used in the specified collection.
+ * @return {Promise} 
+ */
+this.adjacent = function(source, filter, collection) {
+	return new Promise(function(done, fail) {
+		var search = {};
+		Element.model.findOne({&quot;id&quot;:source})
+		.then(function(src) {
+			if(src) {
+				search.source = src;
+				return Promise.all([Edge.model.find({&quot;source&quot;: source}), Edge.model.find({&quot;target&quot;: source})])
+			} else {
+				fail(new Error(&quot;Source doesn&#x27;t exist&quot;));
+			}
+		})
+		.then(function(results) {
+			search.inbound = [];
+			search.outbound = [];
+			results[0].forEach(function(edge) {
+				search.outbound.push(edge.target);
+			});
+			results[1].forEach(function(edge) {
+				search.inbound.push(edge.source);
+			});
+			search.links = results[0].concat(results[1]);
+			return Promise.all([Element.model.find({&quot;id&quot;: {$in:search.inbound}}), Element.model.find({&quot;id&quot;: {$in:search.outbound}})]);
+		})
+		.then(function(results) {
+			search.inbound = results[0];
+			search.outbound = results[1];
+			done(search);
+		})
+		.catch(fail);
+	});
+};
 
 /**
  * 

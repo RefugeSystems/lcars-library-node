@@ -16,6 +16,7 @@ module.exports = function(description, socket) {
 	model.id = random.sessionID();
 	model.authenticated = Date.now();
 	model.last = model.authenticated;
+	model.username = model.username || "anonymous";
 	if(socket) {
 		model.ips = model.ips || [];
 		var ip = socket.ip || socket.srcip || socket.src_ip || socket.sourceIP || socket.source_ip || socket.sip;

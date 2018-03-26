@@ -15,6 +15,20 @@
             "fors": {},
             "namespaces": {}
         },
+        "library\\connections\\_user.js": {
+            "name": "library\\connections\\_user.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "library\\connections\\authentication.js": {
+            "name": "library\\connections\\authentication.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "library\\connections\\exception.js": {
             "name": "library\\connections\\exception.js",
             "modules": {
@@ -38,7 +52,9 @@
         "library\\connections\\session.js": {
             "name": "library\\connections\\session.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Session": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -106,28 +122,10 @@
             "fors": {},
             "namespaces": {}
         },
-        "library\\elements\\set.js": {
-            "name": "library\\elements\\set.js",
+        "library\\elements\\page.js": {
+            "name": "library\\elements\\page.js",
             "modules": {},
             "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
-        "library\\models\\session.js": {
-            "name": "library\\models\\session.js",
-            "modules": {},
-            "classes": {
-                "Session": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "library\\models\\sessionMarker.js": {
-            "name": "library\\models\\sessionMarker.js",
-            "modules": {},
-            "classes": {
-                "SessionMarker": 1
-            },
             "fors": {},
             "namespaces": {}
         },
@@ -176,8 +174,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "library\\server.js": {
-            "name": "library\\server.js",
+        "library\\x-beta.js": {
+            "name": "library\\x-beta.js",
             "modules": {},
             "classes": {
                 "LCARSServer": 1
@@ -193,30 +191,29 @@
             "elements": {},
             "classes": {
                 "Storage": 1,
+                "User": 1,
                 "Exception": 1,
                 "External": 1,
-                "Terminal": 1,
-                "User": 1
+                "Session": 1,
+                "Terminal": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "library\\connections\\user.js",
-            "line": 5
+            "file": "library\\connections\\terminal.js",
+            "line": 2
         },
         "Elements": {
             "name": "Elements",
             "submodules": {},
             "elements": {},
             "classes": {
-                "Session": 1,
                 "Edge": 1,
                 "Distress": 1,
                 "Element": 1,
                 "Event": 1,
                 "Modification": 1,
                 "Set": 1,
-                "SessionMarker": 1,
                 "Circulation": 1,
                 "Search": 1,
                 "Random": 1,
@@ -226,7 +223,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "library\\server.js",
+            "file": "library\\x-beta.js",
             "line": 3,
             "itemtype": "main"
         }
@@ -247,6 +244,26 @@
             "params": [
                 {
                     "name": "definition",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "User": {
+            "name": "User",
+            "shortname": "User",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Connections",
+            "file": "library\\connections\\user.js",
+            "line": 7,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "details",
                     "description": "",
                     "type": "Object"
                 }
@@ -332,10 +349,10 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Elements",
+            "module": "Connections",
             "namespace": "",
-            "file": "library\\models\\session.js",
-            "line": 6,
+            "file": "library\\connections\\session.js",
+            "line": 5,
             "description": "Representation of message access request to retrieve information\nfrom the library and process any needed session information.",
             "is_constructor": 1,
             "params": [
@@ -366,40 +383,14 @@
             "is_constructor": 1,
             "params": [
                 {
-                    "name": "session",
-                    "description": "",
-                    "type": "Session"
-                },
-                {
-                    "name": "user",
-                    "description": "",
-                    "type": "User"
-                },
-                {
-                    "name": "socket",
+                    "name": "connection",
                     "description": "",
                     "type": "WebSocket"
-                }
-            ]
-        },
-        "User": {
-            "name": "User",
-            "shortname": "User",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Connections",
-            "namespace": "",
-            "file": "library\\connections\\user.js",
-            "line": 5,
-            "is_constructor": 1,
-            "params": [
+                },
                 {
-                    "name": "details",
+                    "name": "library",
                     "description": "",
-                    "type": "Object"
+                    "type": "Library"
                 }
             ]
         },
@@ -552,7 +543,7 @@
             "module": "Elements",
             "namespace": "",
             "file": "library\\space\\set.js",
-            "line": 8,
+            "line": 12,
             "description": "Represents the set of links that connect elements. Various collections serve different\npurposes for how they connect and can inherit from one another.",
             "is_constructor": 1,
             "params": [
@@ -567,20 +558,6 @@
                     "type": "Object"
                 }
             ]
-        },
-        "SessionMarker": {
-            "name": "SessionMarker",
-            "shortname": "SessionMarker",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Elements",
-            "namespace": "",
-            "file": "library\\models\\sessionMarker.js",
-            "line": 6,
-            "is_constructor": 1
         },
         "Circulation": {
             "name": "Circulation",
@@ -651,7 +628,7 @@
             "module": "Elements",
             "namespace": "",
             "file": "library\\library.js",
-            "line": 2,
+            "line": 4,
             "is_constructor": 1,
             "params": [
                 {
@@ -671,7 +648,7 @@
             "extension_for": [],
             "module": "Elements",
             "namespace": "",
-            "file": "library\\server.js",
+            "file": "library\\x-beta.js",
             "line": 3,
             "description": "General Library Access/Retrieval Server for the LCARS Library\n\nThe library serves as an endpoint for specific collections as designated by the\nconfiguration. A websocket is used to synchronize collections being provided to\nvarious registrations, allowing for multiple displays to synchronize displayed\ndata.",
             "is_constructor": 1,
@@ -686,6 +663,55 @@
     },
     "elements": {},
     "classitems": [
+        {
+            "file": "library\\connections\\_user.js",
+            "line": 19,
+            "itemtype": "property",
+            "name": "username",
+            "type": "String",
+            "class": "User"
+        },
+        {
+            "file": "library\\connections\\_user.js",
+            "line": 25,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "User"
+        },
+        {
+            "file": "library\\connections\\_user.js",
+            "line": 31,
+            "description": "Field values for arbitrary data.",
+            "itemtype": "property",
+            "name": "data",
+            "type": "Object",
+            "class": "User"
+        },
+        {
+            "file": "library\\connections\\_user.js",
+            "line": 53,
+            "description": "Return an identifier for a User.",
+            "itemtype": "method",
+            "name": "userID",
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "A string for identifying an event.",
+                "type": "String"
+            },
+            "class": "User"
+        },
+        {
+            "file": "library\\connections\\authentication.js",
+            "line": 145,
+            "description": "Middleware for validating user access to the requested resource.",
+            "itemtype": "method",
+            "name": "authorization",
+            "type": "Middleware",
+            "class": "Exception"
+        },
         {
             "file": "library\\connections\\exception.js",
             "line": 23,
@@ -753,7 +779,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 30,
+            "line": 31,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -762,7 +788,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 37,
+            "line": 38,
             "itemtype": "property",
             "name": "username",
             "type": "String",
@@ -771,7 +797,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 44,
+            "line": 45,
             "description": "Due to the way passport processes requests, the source\nIP isn't available at sign-in. Additionally, this field\nis being moved to an array to track possible multitudes\nof IP addresses.",
             "itemtype": "property",
             "name": "srcip",
@@ -782,7 +808,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 55,
+            "line": 56,
             "description": "Tracks IP addresses seen inside this session",
             "itemtype": "property",
             "name": "ips",
@@ -792,7 +818,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 62,
+            "line": 63,
             "description": "The passport request string that generated\nthis request.",
             "itemtype": "property",
             "name": "source",
@@ -802,7 +828,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 70,
+            "line": 71,
             "description": "When this session was established.",
             "itemtype": "property",
             "name": "authenticated",
@@ -812,7 +838,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 77,
+            "line": 78,
             "description": "The String representing the code for this session.",
             "itemtype": "property",
             "name": "authenticator",
@@ -822,7 +848,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 84,
+            "line": 85,
             "description": "String used for looking up this session that should be deleted\nafter fetch.",
             "itemtype": "property",
             "name": "connector",
@@ -832,7 +858,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 92,
+            "line": 93,
             "description": "When set, this names the Tower instance to which the user has an\nactive websocket.",
             "itemtype": "property",
             "name": "connected",
@@ -842,7 +868,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 100,
+            "line": 101,
             "description": "The last time this session was used.",
             "itemtype": "property",
             "name": "last",
@@ -852,7 +878,7 @@
         },
         {
             "file": "library\\connections\\session.js",
-            "line": 107,
+            "line": 108,
             "description": "The Refuge user id",
             "itemtype": "property",
             "name": "user",
@@ -862,7 +888,28 @@
         },
         {
             "file": "library\\connections\\user.js",
-            "line": 19,
+            "line": 17,
+            "description": "Full name of user",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 23,
+            "description": "URL of profile picture",
+            "itemtype": "property",
+            "name": "image",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 29,
+            "description": "User's username.",
             "itemtype": "property",
             "name": "username",
             "type": "String",
@@ -871,42 +918,116 @@
         },
         {
             "file": "library\\connections\\user.js",
-            "line": 25,
+            "line": 35,
+            "description": "User's GMail account for google auth.",
             "itemtype": "property",
-            "name": "id",
+            "name": "gmail",
             "type": "String",
             "class": "User",
             "module": "Connections"
         },
         {
             "file": "library\\connections\\user.js",
-            "line": 31,
-            "description": "Field values for arbitrary data.",
+            "line": 41,
+            "description": "User's eMail account for general correspondence.",
             "itemtype": "property",
-            "name": "data",
+            "name": "gmail",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 47,
+            "description": "Describes where to contact the user, type is prepended as\na protocol and is partially defined by parsing the contact\nstring for patterns.",
+            "itemtype": "property",
+            "name": "contact",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 55,
+            "description": "The minecraft user for this user",
+            "itemtype": "property",
+            "name": "minecraft",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 61,
+            "description": "The steam user for this user",
+            "itemtype": "property",
+            "name": "steam",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 67,
+            "description": "BattleNet Tag",
+            "itemtype": "property",
+            "name": "battlenet",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 73,
+            "description": "League of Legends Main",
+            "itemtype": "property",
+            "name": "pvpnet",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 79,
+            "description": "When this User was last modified wise of properties\nor permissions.",
+            "proptery": "modified",
+            "type": "Number",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 86,
+            "description": "Map of authorizations by grant for lookup. This is based on the\nauthorizations array and stored for debugging.",
+            "itemtype": "property",
+            "name": "authorized",
             "type": "Object",
             "class": "User",
             "module": "Connections"
         },
         {
             "file": "library\\connections\\user.js",
-            "line": 53,
-            "description": "Return an identifier for a User.",
-            "itemtype": "method",
-            "name": "userID",
-            "static": 1,
-            "access": "private",
-            "tagname": "",
-            "return": {
-                "description": "A string for identifying an event.",
-                "type": "String"
-            },
+            "line": 93,
+            "description": "String array of session ObjectId's (This prevents\nother sessions from being exposed in links).",
+            "itemtype": "property",
+            "name": "sessions",
+            "type": "String",
+            "class": "User",
+            "module": "Connections"
+        },
+        {
+            "file": "library\\connections\\user.js",
+            "line": 100,
+            "description": "List of seen IPs for security purposes.",
+            "itemtype": "property",
+            "name": "ips",
+            "type": "String",
             "class": "User",
             "module": "Connections"
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 28,
+            "line": 30,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -915,7 +1036,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 35,
+            "line": 37,
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -924,17 +1045,27 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 42,
-            "description": "Links exist in distinct sets that may or may not be part of the master set.\nThis allows resources to be expressed in different manners and for those manners to inherit\na set or not.",
+            "line": 44,
+            "description": "Links exist in distinct pages that may or may not be part of the master page.\nThis allows resources to be expressed in different manners and for those manners to inherit\na page or not.",
             "itemtype": "property",
-            "name": "set",
+            "name": "page",
             "type": "String",
             "class": "Edge",
             "module": "Elements"
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 53,
+            "line": 54,
+            "description": "When true, this link is considered limited to the set and not the master list.",
+            "itemtype": "property",
+            "name": "private",
+            "type": "Boolean",
+            "class": "Edge",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\edge.js",
+            "line": 61,
             "description": "When determining if an element is \"in distress\" or not, the contribution of all supporting\nelements is considered during an update.\n\nThis must result in a number to be considered valid and is passed the status of the \"source\"\nand \"target\" as 0: Functional, 1: Warning, 2: Exception, or 3: Deactivated .",
             "itemtype": "property",
             "name": "contribution",
@@ -945,7 +1076,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 65,
+            "line": 73,
             "description": "Markdown style string describing the element.",
             "itemtype": "property",
             "name": "description",
@@ -955,7 +1086,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 72,
+            "line": 80,
             "itemtype": "property",
             "name": "type",
             "type": "String",
@@ -964,7 +1095,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 79,
+            "line": 87,
             "itemtype": "property",
             "name": "subtype",
             "type": "String",
@@ -973,7 +1104,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 86,
+            "line": 94,
             "description": "When true, this edge is no longer used when calculating support/dependency\ntrees or event propagation, but it will still appear in searches and show in\nexploratory graphs and searches.",
             "itemtype": "property",
             "name": "removed",
@@ -983,7 +1114,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 95,
+            "line": 103,
             "itemtype": "property",
             "name": "source",
             "type": "String",
@@ -992,7 +1123,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 102,
+            "line": 110,
             "itemtype": "property",
             "name": "target",
             "type": "String",
@@ -1001,7 +1132,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 109,
+            "line": 117,
             "itemtype": "property",
             "name": "fields",
             "type": "Object",
@@ -1010,7 +1141,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 116,
+            "line": 124,
             "itemtype": "property",
             "name": "creater",
             "type": "String",
@@ -1019,7 +1150,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 123,
+            "line": 131,
             "itemtype": "property",
             "name": "created",
             "type": "Number",
@@ -1028,7 +1159,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 130,
+            "line": 138,
             "itemtype": "property",
             "name": "modifier",
             "type": "String",
@@ -1037,7 +1168,7 @@
         },
         {
             "file": "library\\elements\\edge.js",
-            "line": 137,
+            "line": 145,
             "itemtype": "property",
             "name": "modified",
             "type": "Number",
@@ -1068,7 +1199,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 62,
+            "line": 69,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -1077,7 +1208,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 69,
+            "line": 76,
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -1086,7 +1217,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 76,
+            "line": 83,
             "description": "Markdown style string describing the element.",
             "itemtype": "property",
             "name": "description",
@@ -1096,7 +1227,25 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 83,
+            "line": 90,
+            "itemtype": "property",
+            "name": "status",
+            "type": "Number",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 97,
+            "itemtype": "property",
+            "name": "distress",
+            "type": "Number",
+            "class": "Element",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\element.js",
+            "line": 104,
             "itemtype": "property",
             "name": "type",
             "type": "String",
@@ -1105,7 +1254,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 90,
+            "line": 111,
             "itemtype": "property",
             "name": "subtype",
             "type": "String",
@@ -1114,7 +1263,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 97,
+            "line": 118,
             "description": "Indicates if the element should be considered active.\n\nThis does _NOT_ affect it's availability for querying or graph linking,\nthis is simply an extension of the status.\n\nAn example would be taking a server offline for maintenance.\n\nSee {{#crossLink Element/removed:property}}{{/crossLink}} for making an\nelement unavailable to searches and linking.",
             "itemtype": "property",
             "name": "active",
@@ -1124,7 +1273,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 112,
+            "line": 133,
             "description": "When true, this element is no longer used when calculating support/dependency\ntrees or event propagation, but it will still appear in searches and show in\nexploratory graphs and searches.",
             "itemtype": "property",
             "name": "removed",
@@ -1134,7 +1283,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 121,
+            "line": 142,
             "itemtype": "property",
             "name": "distress",
             "type": "Distress",
@@ -1143,7 +1292,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 128,
+            "line": 149,
             "itemtype": "property",
             "name": "fields",
             "type": "Object",
@@ -1152,7 +1301,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 135,
+            "line": 156,
             "itemtype": "property",
             "name": "creater",
             "type": "String",
@@ -1161,7 +1310,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 142,
+            "line": 163,
             "itemtype": "property",
             "name": "created",
             "type": "Number",
@@ -1170,7 +1319,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 149,
+            "line": 170,
             "itemtype": "property",
             "name": "modifier",
             "type": "String",
@@ -1179,7 +1328,7 @@
         },
         {
             "file": "library\\elements\\element.js",
-            "line": 156,
+            "line": 177,
             "itemtype": "property",
             "name": "modified",
             "type": "Number",
@@ -1272,8 +1421,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 27,
+            "file": "library\\elements\\page.js",
+            "line": 25,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -1281,8 +1430,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 34,
+            "file": "library\\elements\\page.js",
+            "line": 32,
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -1290,8 +1439,18 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 41,
+            "file": "library\\elements\\page.js",
+            "line": 39,
+            "description": "When true, edges in this page are considered limited to the page and not the master list.",
+            "itemtype": "property",
+            "name": "private",
+            "type": "Boolean",
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\elements\\page.js",
+            "line": 46,
             "description": "Markdown style string describing the purpose of the set.",
             "itemtype": "property",
             "name": "description",
@@ -1300,8 +1459,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 48,
+            "file": "library\\elements\\page.js",
+            "line": 53,
             "description": "Custom fields to use to tag the set for informational purposes.",
             "itemtype": "property",
             "name": "fields",
@@ -1310,9 +1469,9 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 55,
-            "description": "Array of set IDs that should be considered a subgroup of this set.",
+            "file": "library\\elements\\page.js",
+            "line": 60,
+            "description": "Array of page IDs that should be considered a subgroup of this page.",
             "itemtype": "property",
             "name": "touched",
             "type": "Array | String",
@@ -1320,8 +1479,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 62,
+            "file": "library\\elements\\page.js",
+            "line": 67,
             "itemtype": "property",
             "name": "creater",
             "type": "String",
@@ -1329,8 +1488,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 69,
+            "file": "library\\elements\\page.js",
+            "line": 74,
             "itemtype": "property",
             "name": "created",
             "type": "Number",
@@ -1338,8 +1497,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 76,
+            "file": "library\\elements\\page.js",
+            "line": 81,
             "itemtype": "property",
             "name": "modifier",
             "type": "String",
@@ -1347,148 +1506,12 @@
             "module": "Elements"
         },
         {
-            "file": "library\\elements\\set.js",
-            "line": 83,
+            "file": "library\\elements\\page.js",
+            "line": 88,
             "itemtype": "property",
             "name": "modified",
             "type": "Number",
             "class": "Set",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 12,
-            "itemtype": "property",
-            "name": "id",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 18,
-            "itemtype": "property",
-            "name": "username",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 24,
-            "description": "Due to the way passport processes requests, the source\nIP isn't available at signin. Additionally, this field\nis being moved to an array to track possible multitudes\nof IP addresses.",
-            "itemtype": "property",
-            "name": "srcip",
-            "type": "String",
-            "deprecated": true,
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 34,
-            "description": "Tracks IP addresses seen inside this session",
-            "itemtype": "property",
-            "name": "ips",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 40,
-            "description": "The passport request string that generated\nthis request.",
-            "itemtype": "property",
-            "name": "source",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 47,
-            "description": "When this session was established.",
-            "itemtype": "property",
-            "name": "authenticated",
-            "type": "Number",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 53,
-            "description": "The String representing the code for this session.",
-            "itemtype": "property",
-            "name": "authenticator",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 59,
-            "description": "String used for looking up this session that should be deleted\nafter fetch.",
-            "itemtype": "property",
-            "name": "connector",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 66,
-            "description": "When set, this names the Tower instance to which the user has an\nactive websocket.",
-            "itemtype": "property",
-            "name": "connected",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 73,
-            "description": "The last time this session was used.",
-            "itemtype": "property",
-            "name": "last",
-            "type": "Number",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\session.js",
-            "line": 79,
-            "description": "The Refuge user id",
-            "itemtype": "property",
-            "name": "user",
-            "type": "String",
-            "class": "Session",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\sessionMarker.js",
-            "line": 12,
-            "itemtype": "property",
-            "name": "userID",
-            "type": "String",
-            "class": "SessionMarker",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\sessionMarker.js",
-            "line": 18,
-            "itemtype": "property",
-            "name": "sessionID",
-            "type": "String",
-            "class": "SessionMarker",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\models\\sessionMarker.js",
-            "line": 24,
-            "itemtype": "property",
-            "name": "time",
-            "type": "Number",
-            "class": "SessionMarker",
             "module": "Elements"
         },
         {
@@ -1517,7 +1540,38 @@
         },
         {
             "file": "library\\space\\search.js",
-            "line": 9,
+            "line": 13,
+            "itemtype": "method",
+            "name": "adjacent",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "Element ID",
+                    "type": "String"
+                },
+                {
+                    "name": "filter",
+                    "description": "Specifies specific element types to handle differently.",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "collection",
+                    "description": "If omitted, only links available to the master space are considered,\n \t\totherwise links are used in the specified collection.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Search",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\search.js",
+            "line": 55,
             "itemtype": "method",
             "name": "path",
             "params": [
@@ -1547,7 +1601,7 @@
         },
         {
             "file": "library\\space\\search.js",
-            "line": 22,
+            "line": 68,
             "itemtype": "method",
             "name": "supports",
             "params": [
@@ -1572,7 +1626,7 @@
         },
         {
             "file": "library\\space\\search.js",
-            "line": 34,
+            "line": 80,
             "itemtype": "method",
             "name": "supplies",
             "params": [
@@ -1597,7 +1651,7 @@
         },
         {
             "file": "library\\space\\search.js",
-            "line": 46,
+            "line": 92,
             "itemtype": "method",
             "name": "supportConvergence",
             "params": [
@@ -1622,7 +1676,7 @@
         },
         {
             "file": "library\\space\\search.js",
-            "line": 58,
+            "line": 104,
             "itemtype": "method",
             "name": "supplyConvergence",
             "params": [
@@ -1647,7 +1701,7 @@
         },
         {
             "file": "library\\space\\set.js",
-            "line": 24,
+            "line": 23,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -1656,10 +1710,15 @@
         },
         {
             "file": "library\\space\\set.js",
-            "line": 61,
+            "line": 158,
             "itemtype": "method",
             "name": "emit",
             "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Session"
+                },
                 {
                     "name": "key",
                     "description": "Identifier for the event to emit, a key prefix of \"ext-\" indicating\n \t\texternal origin is required and added automatically if omitted.",
@@ -1669,8 +1728,56 @@
                     "name": "data",
                     "description": "",
                     "type": "Object"
+                },
+                {
+                    "name": "origin",
+                    "description": "",
+                    "type": "String"
                 }
             ],
+            "throws": {
+                "description": "On access denial",
+                "type": "Error"
+            },
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\set.js",
+            "line": 186,
+            "itemtype": "method",
+            "name": "propagating",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The Element causing the event emission from this set.",
+                    "type": "String"
+                },
+                {
+                    "name": "event",
+                    "description": "The Event that is propagating.",
+                    "type": "Event"
+                }
+            ],
+            "class": "Set",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\space\\set.js",
+            "line": 196,
+            "itemtype": "method",
+            "name": "checkAccess",
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Session"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
             "class": "Set",
             "module": "Elements"
         },
@@ -1824,27 +1931,6 @@
         {
             "file": "library\\util\\random.js",
             "line": 100,
-            "description": "Return an identifier for Collections.",
-            "itemtype": "method",
-            "name": "collectionID",
-            "params": [
-                {
-                    "name": "now",
-                    "description": "Timestamp for marking the ID strictly for uniqueness. Defaults to Date.now().",
-                    "type": "Number",
-                    "optional": true
-                }
-            ],
-            "return": {
-                "description": "A string for identifying a collection.",
-                "type": "String"
-            },
-            "class": "Random",
-            "module": "Elements"
-        },
-        {
-            "file": "library\\util\\random.js",
-            "line": 110,
             "description": "Return an identifier for Events.",
             "itemtype": "method",
             "name": "eventID",
@@ -1865,7 +1951,7 @@
         },
         {
             "file": "library\\util\\random.js",
-            "line": 120,
+            "line": 110,
             "description": "Return an identifier for Events.",
             "itemtype": "method",
             "name": "elementID",
@@ -1886,7 +1972,7 @@
         },
         {
             "file": "library\\util\\random.js",
-            "line": 130,
+            "line": 120,
             "description": "Return an identifier for Events.",
             "itemtype": "method",
             "name": "edgeID",
@@ -1907,7 +1993,7 @@
         },
         {
             "file": "library\\util\\random.js",
-            "line": 140,
+            "line": 130,
             "description": "Return an identifier for Sets.",
             "itemtype": "method",
             "name": "setID",
@@ -1928,7 +2014,7 @@
         },
         {
             "file": "library\\library.js",
-            "line": 28,
+            "line": 36,
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -1938,7 +2024,7 @@
         },
         {
             "file": "library\\library.js",
-            "line": 36,
+            "line": 44,
             "itemtype": "property",
             "name": "description",
             "type": "String",
@@ -1947,7 +2033,7 @@
         },
         {
             "file": "library\\library.js",
-            "line": 43,
+            "line": 51,
             "description": "Username of who last updated this library.",
             "itemtype": "property",
             "name": "updater",
@@ -1958,7 +2044,7 @@
         },
         {
             "file": "library\\library.js",
-            "line": 51,
+            "line": 59,
             "itemtype": "property",
             "name": "updated",
             "type": "Number",
@@ -1966,8 +2052,98 @@
             "module": "Elements"
         },
         {
-            "file": "library\\server.js",
-            "line": 100,
+            "file": "library\\library.js",
+            "line": 129,
+            "itemtype": "method",
+            "name": "emit",
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Session"
+                },
+                {
+                    "name": "request",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "origin",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "throws": {
+                "description": "On no access",
+                "type": "Object"
+            },
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 163,
+            "itemtype": "method",
+            "name": "propagating",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The Element causing the event emission from this set.",
+                    "type": "String"
+                },
+                {
+                    "name": "event",
+                    "description": "The Event that is propagating.",
+                    "type": "Event"
+                }
+            ],
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\library.js",
+            "line": 173,
+            "itemtype": "method",
+            "name": "checkAccess",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "session",
+                    "description": "",
+                    "type": "Session"
+                },
+                {
+                    "name": "request",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "action",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "throws": {
+                "description": "On no access",
+                "type": "Object"
+            },
+            "class": "LCARSLibrary",
+            "module": "Elements"
+        },
+        {
+            "file": "library\\x-beta.js",
+            "line": 102,
             "description": "Occurs when a Petition connects to an AccessSet successfully.",
             "itemtype": "event",
             "name": "establish",
@@ -1982,8 +2158,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\server.js",
-            "line": 110,
+            "file": "library\\x-beta.js",
+            "line": 112,
             "description": "Occurs when a Petition appears valid but suffers an exception.",
             "itemtype": "event",
             "name": "malformed",
@@ -1998,8 +2174,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\server.js",
-            "line": 119,
+            "file": "library\\x-beta.js",
+            "line": 121,
             "description": "Occurs when a Petition is received with an unknown event key.",
             "itemtype": "event",
             "name": "fault",
@@ -2014,8 +2190,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\server.js",
-            "line": 128,
+            "file": "library\\x-beta.js",
+            "line": 130,
             "itemtype": "method",
             "name": "broadcast",
             "params": [
@@ -2035,8 +2211,8 @@
             "module": "Elements"
         },
         {
-            "file": "library\\server.js",
-            "line": 139,
+            "file": "library\\x-beta.js",
+            "line": 141,
             "itemtype": "method",
             "name": "terminate",
             "params": [
@@ -2051,6 +2227,14 @@
         }
     ],
     "warnings": [
+        {
+            "message": "unknown tag: proptery",
+            "line": " library\\connections\\user.js:79"
+        },
+        {
+            "message": "Missing item type\nWhen this User was last modified wise of properties\nor permissions.",
+            "line": " library\\connections\\user.js:79"
+        },
         {
             "message": "Missing item type\nNote: When calculating distress, contribution by links is not required and should default to\n 100 / {The Number of Support Links}, ie. That link's percent of the support.",
             "line": " library\\space\\circulation.js:18"

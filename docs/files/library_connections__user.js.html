@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SessionMarker - lcars-library-node</title>
+    <title>library\connections\_user.js - lcars-library-node</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -95,171 +94,78 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>SessionMarker Class</h1>
-<div class="box meta">
-
-
-        <div class="foundat">
-            Defined in: <a href="../files/library_models_sessionMarker.js.html#l6"><code>library\models\sessionMarker.js:6</code></a>
-        </div>
-
-            Module: <a href="../modules/Elements.html">Elements</a>
-
-</div>
-
-
-<div class="box intro">
-    
-</div>
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_SessionMarker" class="method item">
-    <h3 class="name"><code>SessionMarker</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/library_models_sessionMarker.js.html#l6"><code>library\models\sessionMarker.js:6</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-    </div>
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_sessionID">sessionID</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_time">time</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_userID">userID</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-        </div>
-
-
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-<div id="property_sessionID" class="property item">
-    <h3 class="name"><code>sessionID</code></h3>
-    <span class="type">String</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/library_models_sessionMarker.js.html#l18"><code>library\models\sessionMarker.js:18</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-</div>
-<div id="property_time" class="property item">
-    <h3 class="name"><code>time</code></h3>
-    <span class="type">Number</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/library_models_sessionMarker.js.html#l24"><code>library\models\sessionMarker.js:24</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-</div>
-<div id="property_userID" class="property item">
-    <h3 class="name"><code>userID</code></h3>
-    <span class="type">String</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/library_models_sessionMarker.js.html#l12"><code>library\models\sessionMarker.js:12</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-</div>
-            </div>
-
-
-    </div>
+<h1 class="file-heading">File: library\connections\_user.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+
+var Random = require(&quot;../util/random&quot;);
+
+
+/**
+ * 
+ * @class User
+ * @constructor
+ * @param {Object} details
+ */
+module.exports = function(id, details) {
+	var user = this;
+	
+	fields.forEach(function(key) {
+		user[key] = details[key];
+		delete(details[key]);
+	});
+	
+	/**
+	 * 
+	 * @property username
+	 * @type String
+	 */
+	
+	/**
+	 * 
+	 * @property id
+	 * @type String
+	 */
+	
+	/**
+	 * Field values for arbitrary data.
+	 * @property data
+	 * @type Object
+	 */
+	this.data = details;
+	
+	if(users.names[user.username] || users.ids[user.username]) {
+		throw new Error(&quot;Invalid &quot;)
+	}
+};
+
+var fields = [&quot;username&quot;, &quot;id&quot;];
+
+var users = {};
+users.names = {};
+users.ids = {};
+
+module.exports.get = function(id) {
+	return users.ids[id] || users.names[id];
+};
+
+/**
+ * Return an identifier for a User.
+ * @method userID
+ * @static
+ * @private
+ * @return {String} A string for identifying an event. 
+ */
+var userID = function() {
+	var id;
+	do {
+		id = &quot;urID&quot; + Random.string(32);
+	} while(users.ids[id]);
+	return id;
+};
+
+    </pre>
 </div>
                     </div>
                 </div>

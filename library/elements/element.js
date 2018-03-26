@@ -50,6 +50,9 @@ module.exports = function(session, description) {
 	
 	var model = new Model(description);
 	model.id = random.elementID();
+	model.status = description.status || 0;
+	model.distress = description.distress || 100;
+	model.active = description.active === true || description.active === false?description.active:true;
 	model.creater = session.id;
 	model.created = Date.now();
 	model.modifier = session.id;

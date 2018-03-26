@@ -51,7 +51,6 @@
                                 <li><a href="../classes/Random.html">Random</a></li>
                                 <li><a href="../classes/Search.html">Search</a></li>
                                 <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionMarker.html">SessionMarker</a></li>
                                 <li><a href="../classes/Set.html">Set</a></li>
                                 <li><a href="../classes/Storage.html">Storage</a></li>
                                 <li><a href="../classes/Terminal.html">Terminal</a></li>
@@ -117,6 +116,7 @@ module.exports = function(description, socket) {
 	model.id = random.sessionID();
 	model.authenticated = Date.now();
 	model.last = model.authenticated;
+	model.username = model.username || &quot;anonymous&quot;;
 	if(socket) {
 		model.ips = model.ips || [];
 		var ip = socket.ip || socket.srcip || socket.src_ip || socket.sourceIP || socket.source_ip || socket.sip;
@@ -127,7 +127,7 @@ module.exports = function(description, socket) {
 	return model;
 };
 
-var Model = this.model = configuration.connection.model(&quot;session&quot;, new Schema({
+var Model = this.model = configuration.connection.model(&quot;Session&quot;, new Schema({
 	/**
 	 * 
 	 * @property id
