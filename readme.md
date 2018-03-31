@@ -5,9 +5,9 @@
 [![Build Status](https://travis-ci.org/RefugeSystems/lcars-library-node.png)](https://travis-ci.org/RefugeSystems/lcars-library-node)
 [![Dependency Status](https://david-dm.org/RefugeSystems/lcars-library-node.svg)](https://david-dm.org/RefugeSystems/lcars-library-node)
 
-This project is a graph based storage system designed to offer information in a variety of ways to drive relational inqueries to data.
+This project is a graph based storage system designed to offer information in a variety of ways to drive relational inquiries to data.
 
-Other projects for Refuge System are being built around this system to provide interfaces into the data, such as a Star Trek style dashboard ffamiliar to the NExt Generation designs for this project's namesake and monitoring systems to use the event propagation modeling within this project.
+Other projects for Refuge System are being built around this system to provide interfaces into the data, such as a Star Trek style dashboard familiar to the NExt Generation designs for this project's namesake and monitoring systems to use the event propagation modeling within this project.
 
 
 ## Storage
