@@ -74,10 +74,12 @@ configuration
 	var socketserver = new WebSocket.Server({"server": listener});
 	socketserver.on("connection", function(ws, req) {
 		var location = url.parse(req.url, true);
-		console.log("Location: ", location);
 		var terminal = new Terminal(ws, library);
+
 		terminals.push(terminal);
 		emitter.emit("connection", terminal);
+		
+		
 	});
 	
 	socketserver.on("close", function(ws, req) {

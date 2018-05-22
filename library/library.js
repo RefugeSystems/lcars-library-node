@@ -62,7 +62,7 @@ module.exports = function(configuration) {
 	 * @type Number
 	 */
 	this.properties.updated = Date.now();
-	
+	 
 	
 	
 	this.properties.collections = [];
@@ -75,11 +75,10 @@ module.exports = function(configuration) {
 	
 	
 	this.element.create = function(session, request, data) {
-		return new Promise(function(done, fail) {
-			checkAccess(session, request, "create:element");
-			var edge = new Element(session, data);
-			
-		});
+		checkAccess(session, request, "create:element");
+		var edge = new Element(session, data);
+		setTimeout(library.edge.create(edge), 0);
+		return edge;
 	};
 	
 	

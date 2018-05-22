@@ -7,6 +7,7 @@
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
+		"start": "node library/server.js",
 		"test": "grunt test"
 	},
 	"repository": {
@@ -39,7 +40,7 @@
 		"grunt": "^1.0.2",
 		"grunt-contrib-watch": "^1.0.0",
 		"grunt-contrib-yuidoc": "^1.0.0",
-		"grunt-jasmine-nodejs": "^1.6.0",
+		"grunt-jasmine-nodejs": "^1.6.1",
 		"gruntify-eslint": "^4.0.0",
 		"load-grunt-tasks": "^3.5.2",
 		"sandboxed-module": "^2.0.3"

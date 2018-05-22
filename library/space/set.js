@@ -1,13 +1,13 @@
+var configuration = require("a-configuration");
+var Schema = require("mongoose").Schema;
+var random = require("../util/random");
+var EventEmitter = require("events");
 
 var Random = require("../util/random");
-
 var Element = require("../elements/element");
-
 var Edge = require("../elements/edge");
-
 var Page = require("../elements/page");
-
-var EventEmitter = require("events");
+var log = configuration.log;
 
 /**
  * 
@@ -18,30 +18,29 @@ var EventEmitter = require("events");
  * @param {Object} [options]
  */
 module.exports = function(pages, options) {
-	var p;
-	
-	/**
-	 * 
-	 * @property id
-	 * @type String
-	 */
-	this.id = options.id || random.setID();
-	
 	options = options || {};
+
+	var modeled = new Model(this);
+	var id = this.id = options.id || random.setID();
+	var name = this.name = options.name || this.id;
 	
 	var path = options.path || this.id;
-	
 	var pages = options.pages;
-	
 	var access = options.access || null;
 	
-	var elements = {};
-	elements.list = [];
-	elements.ids = [];
+	/**
+	 * IDs of elements in this set
+	 * @property elements
+	 * @type Array
+	 */
+	var elements = this.elements = [];
 	
-	var edges = {};
-	edges.list = [];
-	edges.ids = [];
+	/**
+	 * IDs of edges in this Set
+	 * @property edges
+	 * @type Array
+	 */
+	var edges = this.edges = [];
 	
 	this.collections = pages || null;
 	
@@ -51,101 +50,75 @@ module.exports = function(pages, options) {
 
 	this.addElements = function(session, request, ids) {
 		if(checkAccess(session, request, "add:element")) {
-			Element.model.find({"id":{$in:ids}})
-			.lean()
-			.then(function(elements) {
-				elements.forEach(function(element) {
-					elements[element.id] = element;
-					elements.list.push(element);
-					elements.ids.push(element.id);
-				});
-				emitter.emit("added", {
-					"elements": elements,
-					"type": "additive",
-					"category": "element",
-					"request": request
-				});
-			})
-			.catch(function(error) {
-				emitter.emit("error", {
-					"request": request,
-					"type": "additive",
-					"category": "element",
-					"error": error
-				});
+			var added = [];
+			ids.forEach(function(element) {
+				elements.push(element);
+				added.push(element);
 			});
+			emitter.emit("added", {
+				"added": added,
+				"type": "additive",
+				"category": "element",
+				"request": request
+			});
+			sync();
 		}
 	};
 	
 	this.addEdges = function(session, request, ids, pages) {
 		if(checkAccess(session, request, "add:edge")) {
-			var query = {"id":{"$in":ids}};
-			if(pages) {
-				query.page = {"page":{"$in":pages}};
-			} else {
-				query.private = false;
-			}
-			Edge.model.find(query)
-			.lean()
-			.then(function(edges) {
-				edges.forEach(function(edge) {
-					edges[edge.id] = edge;
-					edges.list.push(edge);
-					edges.ids.push(edge.id);
-				});
-				emitter.emit("added", {
-					"edges": edges,
-					"type": "additive",
-					"category": "edge",
-					"request": request
-				});
-			})
-			.catch(function(error) {
-				emitter.emit("error", {
-					"request": request,
-					"type": "additive",
-					"category": "edge",
-					"error": error
-				});
+			var added = [];
+			ids.forEach(function(edge) {
+				edges.push(edge);
+				added.push(edge);
 			});
+			emitter.emit("added", {
+				"added": added,
+				"type": "additive",
+				"category": "edge",
+				"request": request
+			});
+			sync();
 		}
 	};
 	
 	this.pruneElements = function(session, request, ids) {
 		if(checkAccess(session, request, "add:element")) {
-			var removed = [];
+			var index, removed = [];
 			ids.forEach(function(eid) {
-				if(elements[eid]) {
-					removed.push(elements[eid]);
-					elements.list.splice(elements.list.indexOf(elements[eid]), 1);
-					delete(elements[eid]);
+				index = elements.indexOf(eid);
+				if(index !== -1) {
+					elements.splice(index, 1);
+					removed.push(eid);
 				}
 			});
 			emitter.emit("removed", {
-				"elements": removed,
+				"removed": removed,
 				"type": "subtractive",
 				"category": "element",
 				"request": request
 			});
+			sync();
 		}
 	};
 	
 	this.pruneEdges = function(session, request, ids) {
 		if(checkAccess(session, request, "add:edge")) {
-			var removed = [];
+			var index, removed = [];
 			ids.forEach(function(eid) {
-				if(edges[eid]) {
-					removed.push(edges[eid]);
-					edges.list.splice(edges.list.indexOf(edges[eid]), 1);
-					delete(edges[eid]);
+				index = edges.indexOf(eid);
+				if(index !== -1) {
+					edges.splice(index, 1);
+					removed.push(eid);
 				}
 			});
 			emitter.emit("removed", {
-				"edges": removed,
+				"removed": removed,
 				"type": "subtractive",
 				"category": "edge",
 				"request": request
 			});
+			sync();
 		}
 	};
 	
@@ -215,5 +188,87 @@ module.exports = function(pages, options) {
 		}
 		return true;
 	};
+	
+	var sync = function() {
+		modeled.save()
+		.then(log.debug)
+		.catch(log.error);
+	};
+	
+	sync();
 };
 
+
+var Model = module.exports.model = configuration.connection.model("Set", new Schema({
+	/**
+	 * 
+	 * @property id
+	 * @type String
+	 */
+	"id": String,
+	
+	/**
+	 * 
+	 * @property name
+	 * @type String
+	 */
+	"name": String,
+	
+	/**
+	 * Markdown style string describing the element.
+	 * @property description
+	 * @type String
+	 */
+	"description": String,
+	
+	/**
+	 * 
+	 * @property edges
+	 * @type Array
+	 */
+	"edges": Array,
+	
+	/**
+	 * 
+	 * @property elements
+	 * @type Array
+	 */
+	"elements": Array,
+	
+	/**
+	 * Edge pages used by this set if any. If null, all edge
+	 * pages are used.
+	 * @property collections
+	 * @type Array
+	 * @default null
+	 */
+	"collections": Array,
+	
+	/**
+	 * 
+	 * @property creater
+	 * @type String
+	 */
+	"creater": String,
+	
+	/**
+	 * 
+	 * @property created
+	 * @type Number
+	 */
+	"created": Number,
+	
+	/**
+	 * 
+	 * @property modifier
+	 * @type String
+	 */
+	"modifier": String,
+	
+	/**
+	 * 
+	 * @property modified
+	 * @type Number
+	 */
+	"modified": Number
+}));

@@ -2,7 +2,7 @@
     "project": {
         "name": "lcars-library-node",
         "description": "NodeJS module for creating a library for the LCARS dashboard system",
-        "version": "0.0.0",
+        "version": "0.0.1",
         "url": "https://github.com/RefugeSystems/lcars-library-node#readme"
     },
     "files": {
@@ -1230,7 +1230,7 @@
             "line": 90,
             "itemtype": "property",
             "name": "status",
-            "type": "Number",
+            "type": "String",
             "class": "Element",
             "module": "Elements"
         },

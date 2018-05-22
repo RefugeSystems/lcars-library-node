@@ -90,9 +90,9 @@ var Model = module.exports.model = configuration.connection.model("Element", new
 	/**
 	 * 
 	 * @property status
-	 * @type Number
+	 * @type String
 	 */
-	"status": Number,
+	"status": String,
 	
 	/**
 	 * 

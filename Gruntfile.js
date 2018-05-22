@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 					"modules": true
 				},
 				"globals": [
+					"setTimeout",
 					"requireSubject",
 					"EventEmitter",
 					"random",
@@ -50,6 +51,24 @@ module.exports = function(grunt) {
 					"max-depth": 2,
 					"no-unused-vars": 1
 				},
+				"terminateOnCallback": false,
+				"callback": function(response) {
+					if(response.errorCount) {
+						var result, message;
+						for(result=response.results.length-1; result !== -1; --result) {
+							if(!response.results[result].errorCount) {
+								response.results.splice(result,1);
+							} else {
+								for(message=response.results[result].messages.length-1; message !== -1; --message) {
+									if(response.results[result].messages[message].severity !== 2) {
+										response.results[result].messages.splice(message,1);
+									}
+								}
+							}
+						}
+					}
+					return response;
+				},
 				"envs": ["nodejs", "jasmine"]
 			},
 			"target": ["library/**/*.js", "specifications/**/*.js", "scenarios/**/*.js"]
@@ -58,6 +77,10 @@ module.exports = function(grunt) {
 			"build": {
 				"files": ["library/**/*.js", "specifications/**/*.js", "scenarios/**/*.js"],
 				"tasks": ["spec", "docs"]
+			},
+			"lint": {
+				"files": ["library/**/*.js", "specifications/**/*.js", "scenarios/**/*.js"],
+				"tasks": ["eslint:target"]
 			}
 		},
 		"jasmine_nodejs": {
@@ -66,10 +89,10 @@ module.exports = function(grunt) {
 				"stopOnFailure": true,
 				"reporters": {
 	                "console": {
-	                    "colors": 1,        // (0|false)|(1|true)|2
-	                    "cleanStack": 1,       // (0|false)|(1|true)|2|3
-	                    "verbosity": 4,        // (0|false)|1|2|3|(4|true)
-	                    "listStyle": "indent", // "flat"|"indent"
+	                    "colors": 1,			// (0|false)|(1|true)|2
+	                    "cleanStack": 1,		// (0|false)|(1|true)|2|3
+	                    "verbosity": 4,			// (0|false)|1|2|3|(4|true)
+	                    "listStyle": "indent",	// "flat"|"indent"
 	                    "activity": false
 	                },
 					"junit": {
